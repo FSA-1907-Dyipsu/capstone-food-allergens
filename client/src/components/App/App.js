@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import peanut from '../../assets/images/peanut.png';
 import axios from 'axios';
+import Map from '../Map/Map.js'
 import './App.css';
 
 class App extends Component {
@@ -8,9 +9,9 @@ class App extends Component {
     greeting: ''
   }
   async componentDidMount() {
-    const { greeting } = (await axios.get('/api/test')).data
-    console.log('greeting->', greeting)
-    this.setState({ greeting })
+    // const { greeting } = (await axios.get('/api/test')).data
+    // console.log('greeting->', greeting)
+    // this.setState({ greeting })
   }
   render() { 
     const { greeting } = this.state
@@ -22,10 +23,10 @@ class App extends Component {
             <a href='/reviews'><div>Reviews</div></a>
             <a href='/login'><div>Login</div></a>
           </header>
-          <img src={peanut} className="App-logo" alt="logo" />
-          <p>
+          <Map />
+          {/* <p>
             { greeting }
-          </p>
+          </p> */}
       </div>
     );
   }
