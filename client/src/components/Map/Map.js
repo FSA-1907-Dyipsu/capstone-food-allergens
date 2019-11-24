@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapGL, {Marker, Popup} from 'react-map-gl';
+import ReactMapGL, {Marker, Popup, GeolocateControl} from 'react-map-gl';
 // import mapboxgl from 'mapbox-gl';
 import './Map.css';
 import placeIcon from '../../assets/images/PlaceIcon.png'
@@ -10,7 +10,7 @@ class Map extends Component {
         this.state = {
             viewport: {
                 width: '100vw',
-                height: '90vh',
+                height: '100vh',
                 latitude: 37.7577,
                 longitude: -122.4376,
                 zoom: 12
@@ -35,12 +35,22 @@ class Map extends Component {
               ]
         }
         this.setSelectedRestaurant = this.setSelectedRestaurant.bind(this);
+        this.closeEffect = this.closeEffect.bind(this);
+        this.locateUser = this.locateUser.bind(this);
     };
     componentDidMount(){
+        
     }
-    // componentDidUpdate(){
-    //      // getRestaurant()
-    // }
+    locateUser() {
+        // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
+        navigator.geolocation.getCurrentPosition(async(position) => {
+          await this.setState({viewport:{
+            longitude: position.coords.longitude,
+            latitude: position.coords.latitude,
+            zoom: 8
+          }});
+        });
+      }
     // getRestaurant(){
     //     getRestaurant()
     //     //will need an api call to get all the restaurants within the viewport 
@@ -51,9 +61,19 @@ class Map extends Component {
         event.preventDefault();
         await this.setState({selectedRestaurant:restaurant})
     }
+    closeEffect(){
+        const listener = async(e) => {
+            console.log(e)
+            if(e.key === "Escape") {
+                await this.setState({selectedRestaurant:null})
+            }
+        };
+        window.addEventListener("keydown", listener);
+    }
     render(){
         const {restaurants, selectedRestaurant} = this.state;
-        const {setSelectedRestaurant} = this
+        const {setSelectedRestaurant, closeEffect, locateUser} = this
+        closeEffect()
         return(
             <ReactMapGL
               {...this.state.viewport} 
@@ -61,6 +81,11 @@ class Map extends Component {
               mapStyle="mapbox://styles/grey-matter/ck3800c9m5wec1cp6j6wffxii"
               onViewportChange={(viewport) => this.setState({viewport})}
               >
+                <GeolocateControl 
+                positionOptions={{enableHighAccuracy: true}}
+                trackUserLocation={true}
+                />
+            <button class="primary" onClick={locateUser}>Current Location</button>
               {restaurants.map(restaurant=>(
                 <React.Fragment>
                     <Marker 
@@ -78,9 +103,16 @@ class Map extends Component {
               ))}
               {selectedRestaurant !== null ? (
                 <React.Fragment>
-                  <Popup latitude={selectedRestaurant.geometry.Coordinates[0]} longitude={selectedRestaurant.geometry.Coordinates[1]}>
+                  <Popup 
+                    latitude={selectedRestaurant.geometry.Coordinates[0]} 
+                    longitude={selectedRestaurant.geometry.Coordinates[1]}
+                    onClose={async()=>{
+                        await this.setState({selectedRestaurant:null})
+                    }}
+                    >
                       <div>
-                          Restaurant
+                          <h2>{selectedRestaurant.features.Name}</h2>
+                          <p>{selectedRestaurant.features.Description}</p>
                       </div>
                   </Popup>
                   </React.Fragment>
