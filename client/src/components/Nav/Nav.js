@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import accountIcon from '../../assets/images/AllergyAppIcons/Account_Icon.png'
-import homeIcon from '../../assets/images/AllergyAppIcons/Home_Icon.png'
-import mapIcon from '../../assets/images/AllergyAppIcons/Map_Icon.png'
-import searchIcon from '../../assets/images/AllergyAppIcons/Search_Icon.png'
-import accountIconSelected from '../../assets/images/AllergyAppIcons/Account_Icon Copy.png'
-import homeIconSelected from '../../assets/images/AllergyAppIcons/Home_Icon Copy.png'
-import mapIconSelected from '../../assets/images/AllergyAppIcons/Map_Icon Copy.png'
-import searchIconSelected from '../../assets/images/AllergyAppIcons/Search_Icon Copy.png'
+import accountIcon from '../../assets/images/Nav_Icons/Account_Icon.png'
+import homeIcon from '../../assets/images/Nav_Icons/Home_Icon.png'
+import mapIcon from '../../assets/images/Nav_Icons/Map_Icon.png'
+import searchIcon from '../../assets/images/Nav_Icons/Search_Icon.png'
+import accountIconSelected from '../../assets/images/Nav_Icons/Account_Icon Copy.png'
+import homeIconSelected from '../../assets/images/Nav_Icons/Home_Icon Copy.png'
+import mapIconSelected from '../../assets/images/Nav_Icons/Map_Icon Copy.png'
+import searchIconSelected from '../../assets/images/Nav_Icons/Search_Icon Copy.png'
 import './Nav.css';
 
 

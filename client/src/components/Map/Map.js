@@ -43,11 +43,15 @@ class Map extends Component {
     }
     locateUser() {
         // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
+        console.log(navigator)
         navigator.geolocation.getCurrentPosition(async(position) => {
-          await this.setState({viewport:{
-            longitude: position.coords.longitude,
-            latitude: position.coords.latitude,
-            zoom: 8
+            console.log(position)
+            this.setState({viewport:{
+                width: '100vw',
+                height: '100vh',
+                longitude: position.coords.longitude,
+                latitude: position.coords.latitude,
+                zoom: 14
           }});
         });
       }
@@ -81,10 +85,6 @@ class Map extends Component {
               mapStyle="mapbox://styles/grey-matter/ck3800c9m5wec1cp6j6wffxii"
               onViewportChange={(viewport) => this.setState({viewport})}
               >
-                <GeolocateControl 
-                positionOptions={{enableHighAccuracy: true}}
-                trackUserLocation={true}
-                />
             <button class="primary" onClick={locateUser}>Current Location</button>
               {restaurants.map(restaurant=>(
                 <React.Fragment>

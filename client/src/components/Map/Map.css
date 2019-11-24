@@ -4,6 +4,7 @@
     cursor: pointer;
 }
 
-/* #primary {
+.button {
     background-color: white;
-} */
+    text-decoration:white
+}
