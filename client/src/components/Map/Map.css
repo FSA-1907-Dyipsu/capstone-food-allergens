@@ -1,0 +1,9 @@
+#placeIcon {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#restaurantName {
+    color: white;
+}
