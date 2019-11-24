@@ -35,12 +35,10 @@ class Map extends Component {
               ]
         }
         this.setSelectedRestaurant = this.setSelectedRestaurant.bind(this);
+        this.closeEffect = this.closeEffect.bind(this);
     };
     componentDidMount(){
     }
-    // componentDidUpdate(){
-    //      // getRestaurant()
-    // }
     // getRestaurant(){
     //     getRestaurant()
     //     //will need an api call to get all the restaurants within the viewport 
@@ -51,9 +49,19 @@ class Map extends Component {
         event.preventDefault();
         await this.setState({selectedRestaurant:restaurant})
     }
+    closeEffect(){
+        const listener = async(e) => {
+            console.log(e)
+            if(e.key === "Escape") {
+                await this.setState({selectedRestaurant:null})
+            }
+        };
+        window.addEventListener("keydown", listener);
+    }
     render(){
         const {restaurants, selectedRestaurant} = this.state;
-        const {setSelectedRestaurant} = this
+        const {setSelectedRestaurant, closeEffect} = this
+        closeEffect()
         return(
             <ReactMapGL
               {...this.state.viewport} 
@@ -78,9 +86,16 @@ class Map extends Component {
               ))}
               {selectedRestaurant !== null ? (
                 <React.Fragment>
-                  <Popup latitude={selectedRestaurant.geometry.Coordinates[0]} longitude={selectedRestaurant.geometry.Coordinates[1]}>
+                  <Popup 
+                    latitude={selectedRestaurant.geometry.Coordinates[0]} 
+                    longitude={selectedRestaurant.geometry.Coordinates[1]}
+                    onClose={async()=>{
+                        await this.setState({selectedRestaurant:null})
+                    }}
+                    >
                       <div>
-                          Restaurant
+                          <h2>{selectedRestaurant.features.Name}</h2>
+                          <p>{selectedRestaurant.features.Description}</p>
                       </div>
                   </Popup>
                   </React.Fragment>
