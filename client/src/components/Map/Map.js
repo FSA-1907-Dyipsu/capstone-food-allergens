@@ -34,14 +34,11 @@ class Map extends Component {
                           }
               ]
         }
-        this.setSelectedRestaurant = this.setSelectedRestaurant.bind(this);
-        this.closeEffect = this.closeEffect.bind(this);
-        this.locateUser = this.locateUser.bind(this);
     };
     componentDidMount(){
         
     }
-    locateUser() {
+    locateUser = () => {
         // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
         console.log(navigator)
         navigator.geolocation.getCurrentPosition(async(position) => {
@@ -61,11 +58,11 @@ class Map extends Component {
     //     //can then take this data and render on the map with the Marker component
     //     //alternatively, we could preload the data for faster load times 
     // }
-    async setSelectedRestaurant(event, restaurant){
+    setSelectedRestaurant = async (event, restaurant) => {
         event.preventDefault();
         await this.setState({selectedRestaurant:restaurant})
     }
-    closeEffect(){
+    closeEffect = () => {
         const listener = async(e) => {
             console.log(e)
             if(e.key === "Escape") {
