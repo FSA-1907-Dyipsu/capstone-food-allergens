@@ -2,7 +2,7 @@ const connection = require('../connection');
 const { Sequelize } = connection;
 const { UUID, UUIDV4, STRING } = Sequelize;
 
-module.exports = connection.define('user', {
+const Users = connection.define('users', {
   id: {
     type: UUID,
     primaryKey: true,
@@ -21,6 +21,20 @@ module.exports = connection.define('user', {
   },
   googleId: {
     type: STRING,
-    unique: true
+    unique: true,
+    field: 'google_id'
   }
 });
+
+Users.associate = (models) => {
+  Users.belongsToMany(models.Allergens, {
+    through: 'user_allergens',
+    as: 'allergies',
+    foreignKey: 'user_id'
+  })
+  Users.hasMany(models.Reviews, {
+    foreignKey: 'user_id'
+})
+}
+
+module.exports = Users;
