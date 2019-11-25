@@ -6,9 +6,12 @@ router.get('/logout', (req,res) => {
   res.redirect('/')
 })
 
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}))
+router.get('/google', (req,res) => {
+  console.log('her!')
+})
+// router.get('/google', passport.authenticate('google', {
+//   scope: ['profile', 'email']
+// }))
 
 router.get('/google/redirect', passport.authenticate('google'), (req,res) => {
   res.redirect('/')
