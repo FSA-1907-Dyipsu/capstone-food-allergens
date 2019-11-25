@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const {Allergens} = require('../db/index').models
+const {Dishes} = require('../db/index').models
 
 router.get('/', (req, res, next) => {
-  Allergens.findAll()
-    .then(allergens => res.send(allergens))
+  Dishes.findAll()
+    .then(dishes => res.send(dishes))
     .catch(next)
 });
 
