@@ -7,6 +7,16 @@ const UserAllergens = connection.define('user_allergens', {
     type: UUID,
     primaryKey: true,
     defaultValue: UUIDV4
+  },
+  userId: {
+    type: UUID,
+    allowNull: false,
+    field: 'user_id'
+  },
+  allergenId: {
+    type: UUID,
+    allowNull: false,
+    field: 'allergen_id'
   }
 });
 

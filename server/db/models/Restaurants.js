@@ -15,8 +15,9 @@ const Restaurants = connection.define('restaurants', {
     description: {
         type: TEXT
     },
-    phone: {
-        type: STRING
+    phoneNumber: {
+        type: STRING,
+        field: 'phone_number'
     },
     imageUrl: {
         type: STRING,
@@ -32,9 +33,6 @@ Restaurants.associate = (models) => {
         foreignKey: 'restaurant_id'
     })
     Restaurants.hasMany(models.Dishes, {
-        foreignKey: 'restaurant_id'
-    })
-    Restaurants.hasMany(models.BusinessHours, {
         foreignKey: 'restaurant_id'
     })
     Restaurants.hasOne(models.Addresses, {

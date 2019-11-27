@@ -1,6 +1,6 @@
 const connection = require('../connection');
 const { Sequelize } = connection;
-const { UUID, UUIDV4, STRING } = Sequelize;
+const { UUID, UUIDV4, STRING, TEXT, DECIMAL } = Sequelize;
 
 const Dishes = connection.define('dishes', {
     id: {
@@ -11,6 +11,17 @@ const Dishes = connection.define('dishes', {
     name: {
         type: STRING,
         allowNull: false
+    },
+    description: {
+        type: TEXT
+    },
+    price: {
+        type: DECIMAL(10,2)
+    },
+    restaurantId: {
+        type: UUID,
+        allowNull: false,
+        field: 'restaurant_id'
     }
 });
 
