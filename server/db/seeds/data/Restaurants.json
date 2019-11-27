@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Al Horno Lean",
+        "description": "Mexican Kitchen",
+        "phoneNumber": "(212) 480-8500",
+        "imageUrl": "https://www.nevistas.com/ul/4/2017/03/01/10.jpg",
+        "businessHours": "Mon-Fri: 8:00am-10:00pm; Sat-Sun: 10:00am-10:00pm",
+        "address": {
+            "street": "110 Pearl St",
+            "city": "New York",
+            "state": "NY",
+            "country": "USA",
+            "zip": "10004",
+            "geolocation": ["40.704819", "-74.008929"]
+        },
+        "dishes": [
+            {
+                "name": "Chia Pancakes Platter",
+                "description": "Serves up to 1. Two pancakes per person. Served with sugar-free syrup, honey, and fresh fruit. 10 order minimum.",
+                "price": "13.99"
+            },
+            {
+                "name": "Muscle Repair Platter",
+                "description": "Serves up to 1. Chicken, steak, cactus, pico de gallo, pinto mash, quinoa and Al Horno sauce. 10 order minimum.",
+                "price": "13.99"
+            }
+        ]
+    }
+]

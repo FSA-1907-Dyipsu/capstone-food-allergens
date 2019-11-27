@@ -11,6 +11,10 @@ const Ingredients = connection.define('ingredients', {
     name: {
         type: STRING,
         allowNull: false
+    },
+    allergenId: {
+        type: UUID,
+        field: 'allergen_id'
     }
 });
 

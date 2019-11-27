@@ -8,12 +8,9 @@ const Addresses = connection.define('addresses', {
         primaryKey: true,
         defaultValue: UUIDV4
     },
-    street1: {
+    street: {
         type: STRING,
         allowNull: false
-    },
-    street2: {
-        type: STRING
     },
     city: {
         type: STRING,
@@ -32,7 +29,12 @@ const Addresses = connection.define('addresses', {
         allowNull: false
     },
     geolocation: {
-        type: ARRAY(STRING)
+        type: ARRAY(STRING) // [latitude, longitude]
+    },
+    restaurantId: {
+        type: UUID,
+        allowNull: false,
+        field: 'restaurant_id'
     }
 });
 
