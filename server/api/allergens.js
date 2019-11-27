@@ -1,8 +1,8 @@
 const router = require('express').Router()
-const {Allergens} = require('../db/index').models
+const {Allergens, Users} = require('../db/index').models
 
 router.get('/', (req, res, next) => {
-  Allergens.findAll()
+  Allergens.findAll() //where... user
     .then(allergens => res.send(allergens))
     .catch(next)
 });

@@ -16,16 +16,14 @@ passport.use(
     clientSecret:'H3fCNIoOTGsEVZ_yY2OP2Mhn',
     callbackURL:'/api/auth/google/redirect'
 }, async (accessToken, refreshToken, profile, done)=>{
-let user = profile.displayName
-console.log(user)
-  // let user = await User.findOne({
-  //   where: {googleId}
-  // });
-  // if(!user){
-  //   const name = profile.displayName;
-  //   const email = profile.emails[0].value;
-  //   user = await User.create({name, email, googleId});
-  // }
+  let user = await User.findOne({
+    where: {googleId}
+  });
+  if(!user){
+    const name = profile.displayName;
+    const email = profile.emails[0].value;
+    user = await User.create({name, email, googleId});
+  }
   done(null, user)
 })
 )
