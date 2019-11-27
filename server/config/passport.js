@@ -12,8 +12,8 @@ passport.deserializeUser(async (user, done) => {
 
 passport.use(
   new GoogleStrategy({
-    clientID:'307708163444-gr53a33uvr0ls2hfsronn6vdpkfkg555.apps.googleusercontent.com',
-    clientSecret:'H3fCNIoOTGsEVZ_yY2OP2Mhn',
+    clientID:process.env.GOOGLE_CLIENT_ID,
+    clientSecret:process.env.GOOGLE_CLIENT_SECRET,
     callbackURL:'/api/auth/google/redirect'
 }, async (accessToken, refreshToken, profile, done)=>{
   let googleId = profile.id
