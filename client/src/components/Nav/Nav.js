@@ -9,20 +9,20 @@ import mapIconSelected from '../../assets/images/Nav_Icons/Map_Icon Copy.png'
 import searchIconSelected from '../../assets/images/Nav_Icons/Search_Icon Copy.png'
 import './Nav.css';
 
-
-
-
 class Nav extends Component {
-  state = {
-  }
+  state = {}
   render() { 
+    const { user } = this.props
     return (
       <div className="Nav">
           <header style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
             <a href='/map'><div><img src={mapIconSelected} height="30" width="30"/>Map</div></a>
             <a href='/search'><div><img src={searchIcon} height="30" width="30"/>Search</div></a>
             <a href='/reviews'><div><img src={homeIcon} height="30" width="30"/>Reviews</div></a>
-            <a href='/login'><div><img src={accountIcon} height="30" width="30"/>Account</div></a>
+            {
+              user ? <a href={`${process.env.REACT_APP_PROXY}/api/auth/logout`}><div><img src={accountIcon} height="30" width="30"/>Logout</div></a>
+              : <a href={`${process.env.REACT_APP_PROXY}/api/auth/google`}><div><img src={accountIcon} height="30" width="30"/>Login</div></a>
+            }
           </header>
       </div>
     );

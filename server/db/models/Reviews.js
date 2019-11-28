@@ -18,6 +18,16 @@ const Reviews = connection.define('reviews', {
     },
     description: {
         type: TEXT,
+    },
+    userId: {
+        type: UUID,
+        allowNull: false,
+        field: 'user_id'
+    },
+    restaurantId: {
+        type: UUID,
+        allowNull: false,
+        field: 'restaurant_id'
     }
 });
 

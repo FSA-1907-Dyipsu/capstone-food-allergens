@@ -7,6 +7,16 @@ const DishIngredients = connection.define('dish_ingredients', {
     type: UUID,
     primaryKey: true,
     defaultValue: UUIDV4
+  },
+  dishId: {
+    type: UUID,
+    allowNull: false,
+    field: 'dish_id'
+  },
+  ingredientId: {
+    type: UUID,
+    allowNull: false,
+    field: 'ingredient_id'
   }
 });
 

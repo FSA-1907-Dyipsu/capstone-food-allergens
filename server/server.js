@@ -1,16 +1,27 @@
 /* load configs */
 require('dotenv').config();
+// const cors = require('cors')
 
 /* app setup */
 const express = require('express')
 const app = express()
+const cookieSession = require('cookie-session')
+const passport = require('passport')
 const db = require('./db/');
 
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [process.env.SESSION_KEY]
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(express.json());
 
 // API Routes
-// app.use('/api/auth', require('./api/auth'));
-app.use('/api/test', require('./api/test'));
+// app.use('/api/test', require('./api/test'));
+app.use('/api/auth', require('./api/auth'));
+app.use('/api/user', require('./api/user'));
 
 app.use(({ message }, req, res, next) => {
   res.status(500).send({ message });

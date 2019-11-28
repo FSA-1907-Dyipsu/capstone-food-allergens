@@ -64,7 +64,6 @@ class Map extends Component {
     }
     closeEffect = () => {
         const listener = async(e) => {
-            console.log(e)
             if(e.key === "Escape") {
                 await this.setState({selectedRestaurant:null})
             }
