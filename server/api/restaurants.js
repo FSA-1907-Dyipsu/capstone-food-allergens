@@ -42,8 +42,7 @@ router.get('/location/:lat/:long', (req, res, next) => {
   // if front end can send current geolocation back as params, we can find nearby restos but for now I just hardcoded my geolocation
   Addresses.findAll()
   .then(restos =>{
-    // const lat = resto.geolocation[0]
-    // const long = resto.geolocation[1]
+    // so the number after the less than sign is the measure of distance in miles. currently it is at 10 mi cuz i'm far from NY
     return restos.filter(resto => Haversine(userLat,userLong,resto.geolocation[0],resto.geolocation[1]) < 10)
   })
     //not sure if this sends back only the first instance 
