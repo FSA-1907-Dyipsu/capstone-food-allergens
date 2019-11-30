@@ -4,36 +4,37 @@ const axios = require('axios');
 
 const DATA_FOLDER = path.resolve('./db/seeds/data');
 const CURRENT_LOCATION = [40.705263, -74.009107] // [lat, long]
+const API_KEY = ''
 
-const getRestaurant = (geolocation) => {
+const getRestaurant = (geolocation, page) => {
     return axios({
         method: 'GET',
         url: 'https://us-restaurant-menus.p.rapidapi.com/restaurants/search',
         headers: {
             'content-type': 'application/octet-stream',
             'x-rapidapi-host': 'us-restaurant-menus.p.rapidapi.com',
-            'x-rapidapi-key': '269486f914msh63fff76b7b1235dp1f17c6jsndece146f962f'
+            'x-rapidapi-key': API_KEY
         },
         params: {
             distance: '1',
             lat: geolocation[0],
             lon: geolocation[1],
-            page: '1'
+            page
         }
     })
 }
 
-const getDishes = (restaurantId) => {
+const getDishes = (restaurantId, page) => {
     return axios({
         method: 'GET',
         url: `https://us-restaurant-menus.p.rapidapi.com/restaurant/${restaurantId}/menuitems`,
         headers: {
             'content-type': 'application/octet-stream',
             'x-rapidapi-host': 'us-restaurant-menus.p.rapidapi.com',
-            'x-rapidapi-key': '269486f914msh63fff76b7b1235dp1f17c6jsndece146f962f'
+            'x-rapidapi-key': API_KEY
         },
         params: {
-            page: '1'
+            page
         }
     })
 }
@@ -46,7 +47,7 @@ const writeSeedFileData = (fileName, jsonData) => {
 }
 
 const buildRestaurantsSeedFile = async () => {
-    const restaurantsRaw = (await getRestaurant(CURRENT_LOCATION)).data.result.data
+    const restaurantsRaw = [...((await getRestaurant(CURRENT_LOCATION, 1)).data.result.data), ...((await getRestaurant(CURRENT_LOCATION, 2)).data.result.data)]
     const restaurants = []
     for (let resto of restaurantsRaw) {
         restaurants.push(
@@ -64,7 +65,7 @@ const buildRestaurantsSeedFile = async () => {
                     zip: resto.address.postal_code,
                     geolocation: [resto.geo.lat, resto.geo.lon]
                 },
-                dishes: (await getDishes(resto.restaurant_id)).data.result.data.map(dish => {
+                dishes: [...((await getDishes(resto.restaurant_id, 1)).data.result.data), ...((await getDishes(resto.restaurant_id, 2)).data.result.data)].map(dish => {
                     return {
                         name: dish.menu_item_name,
                         description: dish.menu_item_description,
@@ -77,4 +78,4 @@ const buildRestaurantsSeedFile = async () => {
     writeSeedFileData('Restaurants.json', JSON.stringify(restaurants))
 }
 
-// buildRestaurantsSeedFile();
+// buildRestaurantsSeedFile(); don't rebuild seeder unless needed, makes 100 calls to API!
