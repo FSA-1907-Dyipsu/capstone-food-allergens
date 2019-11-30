@@ -11,8 +11,11 @@ const SEED_FILES = [
 ];
 
 const getSeedFileData = file => {
-  const jsonData = fs.readFileSync(path.join(DATA_FOLDER, file));
-  return JSON.parse(jsonData);
+  return new Promise((res, rej) => {
+    fs.readFile(path.join(DATA_FOLDER, file), 'utf8', (err, jsonString) => {
+      return err ? rej(err) : res(JSON.parse(jsonString))
+    });
+  })
 };
 
 const createModelData = (list, Model) => {
@@ -27,25 +30,24 @@ const createRestaurantData = async (restaurants) => {
       phoneNumber: restaurant.phoneNumber,
       imageUrl: restaurant.imageUrl
     })
-    const {address, dishes} = restaurant
-    await Addresses.create({...address, restaurantId: resto.id})
-    await Promise.all(dishes.map(dish => Dishes.create({...dish, restaurantId: resto.id})))
+    const { address, dishes } = restaurant
+    await Addresses.create({ ...address, restaurantId: resto.id })
+    await Promise.all(dishes.map(dish => Dishes.create({ ...dish, restaurantId: resto.id })))
   }
- }
+}
 
 const seeder = () => {
   SEED_FILES.forEach(async ({ model, file }) => {
-    const seedData = getSeedFileData(file);
+    const seedData = await getSeedFileData(file);
     switch (file) {
       case 'Restaurants.json': {
-        const restaurants = await createRestaurantData(seedData);
-        // console.log(`\nLoaded restaurants ${file}: \n${JSON.stringify(restaurants)}\n`);
+        await createRestaurantData(seedData);
         break;
       }
       default:
         await createModelData(seedData, model);
-        // console.log(`\nLoaded data from ${file}: \n${JSON.stringify(seedData)}...\n`);
     }
+    // console.log(`\nLoaded data from ${file}: \n${JSON.stringify(seedData)}...\n`);
   });
 };
 

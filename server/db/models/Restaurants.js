@@ -22,9 +22,6 @@ const Restaurants = connection.define('restaurants', {
     imageUrl: {
         type: STRING,
         field: 'image_url',
-        validate: {
-            isUrl: true
-        }
     }
 });
 
