@@ -22,6 +22,8 @@ app.use(express.json());
 // app.use('/api/test', require('./api/test'));
 app.use('/api/auth', require('./api/auth'));
 app.use('/api/user', require('./api/user'));
+app.use('/api/dishes', require('./api/dishes'));
+app.use('/api/restaurants', require('./api/restaurants'))
 
 app.use(({ message }, req, res, next) => {
   res.status(500).send({ message });
