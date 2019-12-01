@@ -36,22 +36,19 @@ router.get('/:id', (req, res, next) => {
 })
 
 //by Geolocation
-router.get('/location/:lat/:long', (req, res, next) => {
+  //this sends back an array of addresses that are geolocated close to a starting point in case you were looking to populate the map with icons for nearby restos. I wasn't sure how to filter it to the resto names, but i'm sure I can figure it out just a bit longer
+router.get('/location/:lat/:long', async(req, res, next) => {
+  // if front end can send current geolocation back as params, we can find nearby restos 
   const userLat = req.params.lat
   const userLong = req.params.long
-  // if front end can send current geolocation back as params, we can find nearby restos but for now I just hardcoded my geolocation
-  Addresses.findAll()
-  .then(restos =>{
-    // so the number after the less than sign is the measure of distance in miles. currently it is at 10 mi cuz i'm far from NY
-    return restos.filter(resto => Haversine(userLat,userLong,resto.geolocation[0],resto.geolocation[1]) < 10)
+  let restos = await Addresses.findAll()
+  restos = restos.filter(resto => Haversine(userLat, userLong, resto.geolocation[0], resto.geolocation[1]) < 1)
+  let uniq = Array.from(new Set(restos.map(el => el.street))).map(street =>{
+    return restos.find(resto => resto.street === street)
   })
-    //not sure if this sends back only the first instance 
-    .then(resp => resp.map(respo =>{
-      Restaurants.findByPk(respo.restaurantId)
-      .then(rep => res.send(rep))
-    })
-    )
-  .catch(next)
+  res.send(uniq.slice(0,20))
 })
+
+
 
 module.exports = router
