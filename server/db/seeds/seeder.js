@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const models = require('../models');
-const { Users, Allergens, Restaurants, Addresses, Dishes } = models;
+const { Users, Allergens, Ingredients, Restaurants, Addresses, Dishes } = models;
 
 const DATA_FOLDER = path.resolve('./db/seeds/data');
 const SEED_FILES = [
@@ -21,6 +21,28 @@ const getSeedFileData = file => {
 const createModelData = (list, Model) => {
   return Promise.all(list.map(el => Model.create(el)));
 };
+
+const createAllergenData = async (allergens) => {
+  for (let { name, description, ingredients } of allergens) {
+    const allergen = await Allergens.create({
+      name,
+      description
+    })
+    for (let ingredient of ingredients) {
+      let existingIngredient = await Ingredients.findOne({
+        where: {
+          name: ingredient
+        }
+      })
+      if (!existingIngredient) {
+        existingIngredient = await Ingredients.create({
+          name: ingredient,
+          allergenId: allergen.id
+        })
+      }
+    }
+  }
+}
 
 const createRestaurantData = async (restaurants) => {
   for (let restaurant of restaurants) {
@@ -42,6 +64,10 @@ const seeder = () => {
     switch (file) {
       case 'Restaurants.json': {
         await createRestaurantData(seedData);
+        break;
+      }
+      case 'Allergens.json': {
+        await createAllergenData(seedData);
         break;
       }
       default:
