@@ -36,7 +36,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 //by Geolocation
-  //this sends back an array of addresses that are geolocated close to a starting point in case you were looking to populate the map with icons for nearby restos. I wasn't sure how to filter it to the resto names, but i'm sure I can figure it out just a bit longer
+  //this sends back an array of addresses that are geolocated close to a starting point in case you were looking to populate the map with icons for nearby restos. 
 router.get('/location/:lat/:long', async(req, res, next) => {
   // if front end can send current geolocation back as params, we can find nearby restos 
   const userLat = req.params.lat
@@ -48,7 +48,5 @@ router.get('/location/:lat/:long', async(req, res, next) => {
   })
   res.send(uniq.slice(0,20))
 })
-
-
 
 module.exports = router
