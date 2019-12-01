@@ -16,7 +16,7 @@ const Dishes = connection.define('dishes', {
         type: TEXT
     },
     price: {
-        type: DECIMAL(10,2)
+        type: DECIMAL(10, 2)
     },
     restaurantId: {
         type: UUID,

@@ -2183,11 +2183,6 @@
                 "price": 5.5
             },
             {
-                "name": "American",
-                "description": "cheddar, swiss or mozzarella cheese",
-                "price": 1
-            },
-            {
                 "name": "Fish & Chips",
                 "description": "beer battered & served with tartar sauce & lemon wedge.",
                 "price": 12.95
@@ -2195,7 +2190,7 @@
             {
                 "name": "Moscow Mule",
                 "description": "stoli vodka lime juice & ginger beer",
-                "price": 0
+                "price": 8
             },
             {
                 "name": "Turkey Dumplings",
@@ -2206,11 +2201,6 @@
                 "name": "Crispy Fried Calamari",
                 "description": "with spicy tomato sauce.",
                 "price": 9.95
-            },
-            {
-                "name": "Cheddar Cheese Sauce",
-                "description": "",
-                "price": 0
             },
             {
                 "name": "California Chicken Wrap",
@@ -2290,7 +2280,7 @@
             {
                 "name": "Chocolate Cake",
                 "description": "",
-                "price": 0
+                "price": 4
             },
             {
                 "name": "Fingers N' Fries",
@@ -2350,17 +2340,7 @@
             {
                 "name": "Lightning Lemonade",
                 "description": "stoli blueberi with lemonade",
-                "price": 0
-            },
-            {
-                "name": "Nacho Platter",
-                "description": "add chicken",
-                "price": 2
-            },
-            {
-                "name": "Sautéed Onions",
-                "description": "",
-                "price": 1
+                "price": 4
             },
             {
                 "name": "Sweet & Sour Chicken Wrap",
@@ -2408,14 +2388,9 @@
                 "price": 10.95
             },
             {
-                "name": "Dessert Special Of The Day",
-                "description": "",
-                "price": 0
-            },
-            {
                 "name": "Lynchburg Lemonade",
                 "description": "jack daniel's tennessee honey & lemonade",
-                "price": 0
+                "price": 6
             },
             {
                 "name": "Chicken Fingers",

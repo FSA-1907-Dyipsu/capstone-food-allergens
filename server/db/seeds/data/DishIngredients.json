@@ -1,0 +1,72 @@
+[
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "House Salad",
+        "ingredients": [
+            "agave", "lemon", "kale", "yeast", "shallot", "tahini", "water", "lettuce", "carrot", "avocado", "salt", "olive oil"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Fish & Chips",
+        "ingredients": [
+            "potato", "flour", "baking powder", "salt", "pepper", "fish", "egg", "milk"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Crispy Fried Calamari",
+        "ingredients": [
+            "flour", "salt", "paprika", "pepper", "garlic", "squid", "salt", "lemon"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Mozzarella Sticks",
+        "ingredients": [
+            "egg", "milk", "bread", "cheese"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Spicy Thai Orange Chicken",
+        "ingredients": [
+            "olive oil", "carrot", "ginger", "garlic", "chicken", "peanut", "orange", "soy sauce", "sugar", "ketchup", "starch"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Nacho Platter",
+        "ingredients": [
+            "chicken", "chip", "cheese", "bean", "salsa", "olive", "onion", "pepper"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Sweet & Sour Chicken Wrap",
+        "ingredients": [
+            "starch", "sugar", "vinegar", "chicken", "flour", "starch", "pepper", "egg", "pineapple"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Grilled Cheese & Ham",
+        "ingredients": [
+            "egg", "cream", "pepper", "salt", "nutmeg", "lemon", "bread", "cheese", "ham", "butter", "vinegar"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Veggie Burger",
+        "ingredients": [
+            "olive", "onion", "garlic", "carrot", "squash", "zucchini", "oat", "bread", "cheese", "egg", "soy sauce", "flour"
+        ] 
+    },
+    {
+        "restaurantName": "Killarney Rose",
+        "dishName": "Bison Burger",
+        "ingredients": [
+            "bison", "bread", "egg", "garlic", "pepper", "olive", "cheese"
+        ] 
+    }
+]
