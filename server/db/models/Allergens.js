@@ -19,15 +19,9 @@ const Allergens = connection.define('allergens', {
 
 Allergens.associate = (models) => {
     Allergens.belongsToMany(models.Users, {
-        through: 'user_allergens',
-        as: 'users',
-        foreignKey: 'allergen_id'
+        through: 'user_allergens'
     })
-    Allergens.hasMany(models.Ingredients, {
-        foreignKey: {
-            name: 'allergen_id'
-        }
-    })
+    Allergens.hasMany(models.Ingredients)
 }
 
 module.exports = Allergens;

@@ -44,6 +44,38 @@ const createAllergenData = async (allergens) => {
   }
 }
 
+const createIngredientData = async (dishIngredients) => {
+  const restoIdMemo = {}
+  for (let { restaurantName, dishName, ingredients } of dishIngredients) {
+    if (!restoIdMemo[restaurantName]) {
+      restoIdMemo[restaurantName] = (await Restaurants.findOne({
+        where: {
+          name: restaurantName
+        }
+      })).id
+    }
+    const existingDish = await Dishes.findOne({
+      where: {
+        name: dishName,
+        restaurantId: restoIdMemo[restaurantName]
+      }
+    })
+    for (let ingredient of ingredients) {
+      let existingIngredient = await Ingredients.findOne({
+        where: {
+          name: ingredient
+        }
+      })
+      if (!existingIngredient) {
+        existingIngredient = await Ingredients.create({
+          name: ingredient
+        })
+      }
+      await existingDish.addIngredient(existingIngredient)
+    }
+  }
+}
+
 const createRestaurantData = async (restaurants) => {
   for (let restaurant of restaurants) {
     const resto = await Restaurants.create({
@@ -56,6 +88,7 @@ const createRestaurantData = async (restaurants) => {
     await Addresses.create({ ...address, restaurantId: resto.id })
     await Promise.all(dishes.map(dish => Dishes.create({ ...dish, restaurantId: resto.id })))
   }
+  await createIngredientData(await getSeedFileData('Ingredients.json'));
 }
 
 const seeder = () => {

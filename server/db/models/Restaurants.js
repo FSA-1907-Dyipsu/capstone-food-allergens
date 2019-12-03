@@ -16,25 +16,17 @@ const Restaurants = connection.define('restaurants', {
         type: TEXT
     },
     phoneNumber: {
-        type: STRING,
-        field: 'phone_number'
+        type: STRING
     },
     imageUrl: {
-        type: STRING,
-        field: 'image_url',
+        type: STRING
     }
 });
 
 Restaurants.associate = (models) => {
-    Restaurants.hasMany(models.Reviews, {
-        foreignKey: 'restaurant_id'
-    })
-    Restaurants.hasMany(models.Dishes, {
-        foreignKey: 'restaurant_id'
-    })
-    Restaurants.hasOne(models.Addresses, {
-        foreignKey: 'restaurant_id'
-    })
+    Restaurants.hasMany(models.Reviews)
+    Restaurants.hasMany(models.Dishes)
+    Restaurants.hasOne(models.Addresses)
 }
 
 module.exports = Restaurants;

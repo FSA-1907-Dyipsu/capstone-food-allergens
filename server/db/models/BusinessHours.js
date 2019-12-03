@@ -12,19 +12,15 @@ const BusinessHours = connection.define('business_hours', {
         type: ENUM('MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT', 'SUN')
     },
     timeOpen: {
-        type: TIME,
-        field: 'time_open'
+        type: TIME
     },
     timeClose: {
-        type: TIME,
-        field: 'time_close'
+        type: TIME
     }
 });
 
 BusinessHours.associate = (models) => {
-    BusinessHours.belongsTo(models.Restaurants, {
-        foreignKey: 'restaurant_id'
-    })
+    BusinessHours.belongsTo(models.Restaurants)
 }
 
 module.exports = BusinessHours;

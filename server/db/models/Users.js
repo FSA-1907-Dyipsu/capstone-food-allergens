@@ -21,20 +21,15 @@ const Users = connection.define('users', {
   },
   googleId: {
     type: STRING,
-    unique: true,
-    field: 'google_id'
+    unique: true
   }
 });
 
 Users.associate = (models) => {
   Users.belongsToMany(models.Allergens, {
-    through: 'user_allergens',
-    as: 'allergies',
-    foreignKey: 'user_id'
+    through: 'user_allergens'
   })
-  Users.hasMany(models.Reviews, {
-    foreignKey: 'user_id'
-})
+  Users.hasMany(models.Reviews)
 }
 
 module.exports = Users;

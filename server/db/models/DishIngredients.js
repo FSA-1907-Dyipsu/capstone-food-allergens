@@ -10,13 +10,11 @@ const DishIngredients = connection.define('dish_ingredients', {
   },
   dishId: {
     type: UUID,
-    allowNull: false,
-    field: 'dish_id'
+    allowNull: false
   },
   ingredientId: {
     type: UUID,
-    allowNull: false,
-    field: 'ingredient_id'
+    allowNull: false
   }
 });
 

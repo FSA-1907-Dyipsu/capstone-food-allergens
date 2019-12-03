@@ -21,23 +21,17 @@ const Reviews = connection.define('reviews', {
     },
     userId: {
         type: UUID,
-        allowNull: false,
-        field: 'user_id'
+        allowNull: false
     },
     restaurantId: {
         type: UUID,
-        allowNull: false,
-        field: 'restaurant_id'
+        allowNull: false
     }
 });
 
 Reviews.associate = (models) => {
-    Reviews.belongsTo(models.Users, {
-        foreignKey: 'user_id'
-    })
-    Reviews.belongsTo(models.Restaurants, {
-        foreignKey: 'restaurant_id'
-    })
+    Reviews.belongsTo(models.Users)
+    Reviews.belongsTo(models.Restaurants)
 }
 
 module.exports = Reviews;
