@@ -20,19 +20,14 @@ const Dishes = connection.define('dishes', {
     },
     restaurantId: {
         type: UUID,
-        allowNull: false,
-        field: 'restaurant_id'
+        allowNull: false
     }
 });
 
 Dishes.associate = (models) => {
-    Dishes.belongsTo(models.Restaurants, {
-        foreignKey: 'restaurant_id'
-    })
+    Dishes.belongsTo(models.Restaurants)
     Dishes.belongsToMany(models.Ingredients, {
-        through: 'dish_ingredients',
-        as: 'ingredients',
-        foreignKey: 'dish_id'
+        through: 'dish_ingredients'
     })
 }
 

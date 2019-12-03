@@ -10,13 +10,11 @@ const UserAllergens = connection.define('user_allergens', {
   },
   userId: {
     type: UUID,
-    allowNull: false,
-    field: 'user_id'
+    allowNull: false
   },
   allergenId: {
     type: UUID,
-    allowNull: false,
-    field: 'allergen_id'
+    allowNull: false
   }
 });
 

@@ -34,14 +34,11 @@ const Addresses = connection.define('addresses', {
     restaurantId: {
         type: UUID,
         allowNull: false,
-        field: 'restaurant_id'
     }
 });
 
 Addresses.associate = (models) => {
-    Addresses.belongsTo(models.Restaurants, {
-        foreignKey: 'restaurant_id'
-    })
+    Addresses.belongsTo(models.Restaurants)
 }
 
 module.exports = Addresses;

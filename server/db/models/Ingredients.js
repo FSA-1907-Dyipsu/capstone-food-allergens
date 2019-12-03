@@ -14,19 +14,14 @@ const Ingredients = connection.define('ingredients', {
         unique: true
     },
     allergenId: {
-        type: UUID,
-        field: 'allergen_id'
+        type: UUID
     }
 });
 
 Ingredients.associate = (models) => {
-    Ingredients.belongsTo(models.Allergens, {
-        foreignKey: 'allergen_id'
-    })
+    Ingredients.belongsTo(models.Allergens)
     Ingredients.belongsToMany(models.Dishes, {
-        through: 'dish_ingredients',
-        as: 'dishes',
-        foreignKey: 'ingredient_id'
+        through: 'dish_ingredients'
     })
 }
 
