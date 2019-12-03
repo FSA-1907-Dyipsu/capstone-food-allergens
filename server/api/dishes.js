@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Restaurants, Dishes} = require('../db/index').models
+const {Dishes} = require('../db/index').models
 
 router.get('/:id', (req,res,next) =>{
   Dishes.findAll({where:{
