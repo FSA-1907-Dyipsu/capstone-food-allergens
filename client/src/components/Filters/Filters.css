@@ -1,8 +1,20 @@
-.body {
-    background: white;
+
+
+.filterContainer {
+    justify-content: flex-end;
 }
 
-.filterIcon {
+.filterIconFalse {
     height: 10px;
     width: 10px;
+    border-color: purple;
+    background: white;
+    border-radius: 50%;
+}
+
+.filterLabelFalse {
+    height: 10px;
+    width: 10px;
+    border-color: purple;
+    background: purple;
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import peanut from '../../assets/images/peanut.png';
 import axios from 'axios';
 import Map from '../Map/Map.js'
 import Nav from '../Nav/Nav.js'
@@ -18,10 +17,10 @@ class App extends Component {
     const { user } = this.state
     return (
       <div className="App">
-          <Nav user={user}/>
           <Search />
-          <Filters />
           <Map />
+          <Filters />
+          <Nav user={user}/>
       </div>
     );
   }

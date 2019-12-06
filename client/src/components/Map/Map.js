@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactMapGL, {Marker, Popup, GeolocateControl} from 'react-map-gl';
+import axios from 'axios';
 // import mapboxgl from 'mapbox-gl';
 import './Map.css';
 import placeIcon from '../../assets/images/PlaceIcon.png'
@@ -11,8 +12,8 @@ class Map extends Component {
             viewport: {
                 width: '100vw',
                 height: '80vh',
-                latitude: 37.7577,
-                longitude: -122.4376,
+                latitude: 40.705254,
+                longitude: -74.008917,
                 zoom: 12
               },
               selectedRestaurant: null,
@@ -29,14 +30,14 @@ class Map extends Component {
                                   Allergies: ["Peanuts", "Lentils"]
                               },
                               geometry: {
-                                  Coordinates: [37.792980, -122.435790]
+                                  Coordinates: [40.705254, -74.008917]
                               }
                           }
               ]
         }
     };
     componentDidMount(){
-        
+        this.getRestaurant()
     }
     locateUser = () => {
         // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
@@ -44,20 +45,18 @@ class Map extends Component {
         navigator.geolocation.getCurrentPosition(async(position) => {
             console.log(position)
             this.setState({viewport:{
-                width: '100vw',
-                height: '100vh',
+                width: '80vw',
+                height: '80vh',
                 longitude: position.coords.longitude,
                 latitude: position.coords.latitude,
                 zoom: 14
           }});
         });
       }
-    // getRestaurant(){
-    //     getRestaurant()
-    //     //will need an api call to get all the restaurants within the viewport 
-    //     //can then take this data and render on the map with the Marker component
-    //     //alternatively, we could preload the data for faster load times 
-    // }
+    getRestaurant = async () => {
+        const restaurants = await axios.get(`${process.env.REACT_APP_PROXY}/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`).data;
+        console.log(restaurants)
+    }
     setSelectedRestaurant = async (event, restaurant) => {
         event.preventDefault();
         await this.setState({selectedRestaurant:restaurant})
@@ -81,7 +80,7 @@ class Map extends Component {
               mapStyle="mapbox://styles/grey-matter/ck3800c9m5wec1cp6j6wffxii"
               onViewportChange={(viewport) => this.setState({viewport})}
               >
-            <button class="primary" onClick={locateUser}>Current Location</button>
+            <button className="primary" onClick={locateUser}>Current Location</button>
               {restaurants.map(restaurant=>(
                 <React.Fragment>
                     <Marker 
@@ -89,7 +88,7 @@ class Map extends Component {
                         latitude={restaurant.geometry.Coordinates[0]}  
                         longitude={restaurant.geometry.Coordinates[1]}
                     >
-                        <button class="placeIcon" onClick={(event) => { 
+                        <button className="placeIcon" onClick={(event) => { 
                             setSelectedRestaurant(event, restaurant)
                             }}>
                         <img src={placeIcon} height="40" width="20"/>
