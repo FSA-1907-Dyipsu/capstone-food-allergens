@@ -13,7 +13,7 @@ class Filters extends Component {
         Object.keys(Icons).map((allergy)=>{
             return(
             <button>
-                <img src={Icons[allergy]}/>
+                <img src={Icons[allergy]} class="filterIcon"/>
                 <div>{`${allergy}`}</div>
             </button>
             )

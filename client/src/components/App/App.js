@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Map from '../Map/Map.js'
 import Nav from '../Nav/Nav.js'
+import Search from '../Search/Search.js'
 import Filters from '../Filters/Filters.js'
 import './App.css';
 
@@ -18,7 +19,9 @@ class App extends Component {
     return (
       <div className="App">
           <Nav user={user}/>
+          <Search />
           <Filters />
+          <Map />
       </div>
     );
   }

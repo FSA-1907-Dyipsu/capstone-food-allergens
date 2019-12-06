@@ -1,0 +1,19 @@
+#searchBar {
+    align-content: center;
+    height: 20px;
+    width: 80%;
+    align-content: center;
+    border-color: #318BFF;
+    border-width: 20px;
+    background: white;
+    opacity: 0.5;
+}
+
+#searchBar img {
+      height:80%
+}
+
+#searchBar input {
+    background: none;
+    border: none;
+}

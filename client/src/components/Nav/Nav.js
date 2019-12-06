@@ -19,10 +19,10 @@ class Nav extends Component {
             <a href='/map'><div><img src={mapIconSelected} height="30" width="30"/>Map</div></a>
             <a href='/search'><div><img src={searchIcon} height="30" width="30"/>Search</div></a>
             <a href='/reviews'><div><img src={homeIcon} height="30" width="30"/>Reviews</div></a>
-            {
+            {/* {
               user ? <a href={`${process.env.REACT_APP_PROXY}/api/auth/logout`}><div><img src={accountIcon} height="30" width="30"/>Logout</div></a>
               : <a href={`${process.env.REACT_APP_PROXY}/api/auth/google`}><div><img src={accountIcon} height="30" width="30"/>Login</div></a>
-            }
+            } */}
           </header>
       </div>
     );
