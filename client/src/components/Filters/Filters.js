@@ -4,20 +4,37 @@ import './Filters.css';
 
 class Filters extends Component {
     state = {
+        toggle: false,
+        filters: {
+            dairy: false,
+            eggs: false,
+            gluten: false,
+            peanuts: false,
+            soy: false,
+            shellfish: false,
+            treenuts: false
+        }
     }
-    async componentDidMount() {
-        // ILL NEED AN API  CALL HERE FOR THE ALLERGIES IN THE DATABASE
+    onClick = (allergy) => {
+        const filters = this.state.filters
+        filters[allergy] = !filters[allergy]
+        this.setState({filters})
+    }
+    filterToggle = () => {
+
     }
     render() { 
       return (
-        Object.keys(Icons).map((allergy)=>{
+        <div className="filterContainer">
+        {Object.keys(Icons.unselected).map((allergy,idx)=>{
             return(
-            <button>
-                <img src={Icons[allergy]}/>
-                <div>{`${allergy}`}</div>
-            </button>
+                <div className="individualFilterContainer" key={idx}>
+                    {this.state.filters[allergy] === true ? 
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/> </button> : 
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt=""/> </button>}
+                </div> 
             )
-        })
+        })} </div>
       );
     }
   }
