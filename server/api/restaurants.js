@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Restaurants, Addresses} = require('../db/index').models
+const {Restaurants, Addresses, Dishes, Ingredients, Allergens} = require('../db/index').models
 const Sequelize = require('sequelize');
 const { Op } = Sequelize
 
@@ -29,10 +29,19 @@ router.get('/', (req, res, next) => {
 });
 
 //get by an ID
-router.get('/:id', (req, res, next) => {
-  Restaurants.findByPk(req.params.id)
-  .then(restaurant => res.send(restaurant))
-  .catch(next)
+router.get('/:id', async (req, res, next) => {
+  const restaurant = await Restaurants.findByPk(req.params.id, {include:{model:Dishes, include:[{model:Ingredients, include:[Allergens]}]}})
+  const dishes = restaurant.dishes
+  const allergens = dishes.reduce((accum, dish) => {
+    if(dish.ingredients.length){
+      for(let i = 0; i < dish.ingredients.length; i ++){
+        const allergen = dish.ingredients[i].allergen
+        if(allergen) accum.add(allergen.name)
+      }
+    }
+    return accum
+  }, new Set())
+  res.send([...allergens])
 })
 
 //by Geolocation
