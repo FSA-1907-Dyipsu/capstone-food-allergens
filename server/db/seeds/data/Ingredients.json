@@ -71,9 +71,128 @@
     },
     {
         "restaurantName": "Harry's Cafe & Steak",
-        "dishName": "DIVER SEA SCALLOPS",
+        "dishName": "Diver Sea Scallop",
         "ingredients": [
-            "bison", "bread", "egg", "garlic", "pepper", "olive", "cheese"
+            "bison", "bread", "egg", "garlic", "pepper", "olive", "cheese", "scallop"
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Prosciutto Di Parma",
+        "ingredients": [
+            "asparagus, olive, chesse, prosciutto, pepper, vinegar, egg"
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Shellfish Platter",
+        "ingredients": [
+            "shrimp", "clam", "oyster", "crab", "corn", "sausage"
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Hanover Steak & Cheese",
+        "ingredients": [
+            "butter", "onion", "mushroom", "garlic", "sirloin", "salt", "cheese"
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Roasted Branzino Salad",
+        "ingredients": [
+            "quinoa", "kale", "avocado", "cucumber", "onion", "olive", "salt", "corn"
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Onion Soup Au Gratin",
+        "ingredients": [
+            "butter", "onion", "wine", "beef", "thyme", "bread", "cheese"
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Baked Steak Nachos Tray",
+        "ingredients": [
+            "bean", "steak", "chip", "corn", "cheese", "avocado", "onion", "sour cream", "cilantro", "cheese"
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Chia Pancakes Platter",
+        "ingredients": [
+            "flour", "maple", "almond", "milk", "vinegar", "cinnamon", "vanilla"
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Muscle Repair Platter",
+        "ingredients": [
+            "egg", "milk", "cereal", "chicken", "beef"
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Low-Sugar Chocolate Mousse Cake",
+        "ingredients": [
+            "butter", "egg", "sugar", "cream", "chocolate", "flour"
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Cactus Torta",
+        "ingredients": [
+            "cactus", "jalapeno", "onion", "egg", "avocado", "cheese", "cilantro"
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "Grill Calamari Salad",
+        "ingredients": [
+            "squid", "lemon", "wine", "garlic", "pepper", "onion", "olive", "celery", "parsley"
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "Chicken Cutlet Parmigiana Hero",
+        "ingredients": [
+            "bread", "cheese", "egg", "salt", "chicken", "mozzarella", "basil", "tomato"
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "Anchovies Pizza Specialty Slice",
+        "ingredients": [
+            "tomato", "bread", "garlic", "oregano", "fish", "onion", "cheese"
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "Meatball Parmigiana Calzone",
+        "ingredients": [
+            "tomato", "bread", "garlic", "oregano", "beef", "pork", "onion", "cheese"
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "Stuffed Shells",
+        "ingredients": [
+            "tomato", "bread", "garlic", "oregano", "shrimp", "onion", "cheese", "muscle", "clam"
+        ] 
+    },
+    {
+        "restaurantName": "Adrienne's Pizza Bar",
+        "dishName": "Zuppa Di Cavolonero",
+        "ingredients": [
+            "sausage", "olive", "garlic", "thyme", "kale", "bean", "nut"
+        ] 
+    },
+    {
+        "restaurantName": "Adrienne's Pizza Bar",
+        "dishName": "Mozzarella and Tomatoes Salad",
+        "ingredients": [
+            "tomato", "cheese", "olive", "vinegar", "basil", "bread", "pepper"
         ] 
     }
 ]
