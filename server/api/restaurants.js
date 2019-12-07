@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Restaurants, Addresses} = require('../db/index').models
+const {Restaurants, Addresses, Dishes, Ingredients, Allergens} = require('../db/index').models
 const Sequelize = require('sequelize');
 const { Op } = Sequelize
 
@@ -28,11 +28,27 @@ router.get('/', (req, res, next) => {
     .catch(next)
 });
 
-//get by an ID
+//get just the restauraunt
 router.get('/:id', (req, res, next) => {
-  Restaurants.findByPk(req.params.id)
-  .then(restaurant => res.send(restaurant))
-  .catch(next)
+  Restaurants.findByPk(req.params.id,{include:{model:Addresses}})
+    .then(restaurant => res.send(restaurant))
+    .catch(next)
+})
+
+//get allergens in a restoby an ID
+router.get('/:id/allergens', async (req, res, next) => {
+  const restaurant = await Restaurants.findByPk(req.params.id, {include:{model:Dishes, include:[{model:Ingredients, include:[Allergens]}]}})
+  const dishes = restaurant.dishes
+  const allergens = dishes.reduce((accum, dish) => {
+    if(dish.ingredients.length){
+      for(let i = 0; i < dish.ingredients.length; i ++){
+        const allergen = dish.ingredients[i].allergen
+        if(allergen) accum.add(allergen.name)
+      }
+    }
+    return accum
+  }, new Set())
+  res.send([...allergens])
 })
 
 //by Geolocation
@@ -41,7 +57,7 @@ router.get('/location/:lat/:long', async(req, res, next) => {
   // if front end can send current geolocation back as params, we can find nearby restos 
   const userLat = req.params.lat
   const userLong = req.params.long
-  let restos = await Addresses.findAll()
+  let restos = await Addresses.findAll({include:{model:Restaurants}})
   restos = restos.filter(resto => Haversine(userLat, userLong, resto.geolocation[0], resto.geolocation[1]) < 1)
   let uniq = Array.from(new Set(restos.map(el => el.street))).map(street =>{
     return restos.find(resto => resto.street === street)
