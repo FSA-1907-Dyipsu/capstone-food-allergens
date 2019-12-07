@@ -18,22 +18,20 @@ class Map extends Component {
               },
               selectedRestaurant: null,
               restaurants: [{
-                              type: "Restuarant",
-                              features: {
-                                  Id: 960,
-                                  Name: "Nob Hill Cafe",
-                                  Reviews: 5,
-                                  Address: "1152 Taylor St, San Francisco, CA 94108",
-                                  Hours: null,
-                                  Description: "This relaxed cafe serves Tuscan pastas & pizzas in a quaint space that recalls old San Francisco",
-                                  FoodType: ["Comfort Food", "Pizza"],
-                                  Allergies: ["Peanuts", "Lentils"]
-                              },
-                              geometry: {
-                                  Coordinates: [40.705254, -74.008917]
-                              }
-                          }
-              ]
+                id: "81cad0fa-b9a5-44f1-aa1a-6c1ef9d4da0e",
+                street: "127 Pearl St",
+                city: "New York",
+                state: "NY",
+                country: "USA",
+                zip: "10005",
+                geolocation: [
+                40.704881,
+                -74.008656
+                ],
+                restaurantId: "4519ffb3-f340-44f1-9519-8804d096e1e0",
+                createdAt: "2019-12-07T18:34:35.678Z",
+                updatedAt: "2019-12-07T18:34:35.678Z"
+                }]
         }
     };
     componentDidMount(){
@@ -54,9 +52,10 @@ class Map extends Component {
         });
       }
     getRestaurant = async () => {
-        console.log('path-->', process.env.REACT_APP_PROXY)
-        const restaurants = (await axios.get(`${process.env.REACT_APP_PROXY}/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)).data;
-        console.log(restaurants)
+        console.log('path-->', `${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)
+        const newRestaurants = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)).data;
+        console.log("newRestaturants", newRestaurants)
+        this.setState({restaurants: newRestaurants})
     }
     setSelectedRestaurant = async (event, restaurant) => {
         event.preventDefault();
@@ -82,12 +81,12 @@ class Map extends Component {
               onViewportChange={(viewport) => this.setState({viewport})}
               >
             <button className="primary" onClick={locateUser}>Current Location</button>
-              {restaurants.map(restaurant=>(
+              {restaurants.map(restaurant => (
                 <React.Fragment>
                     <Marker 
-                        key={restaurant.features.Id} 
-                        latitude={restaurant.geometry.Coordinates[0]}  
-                        longitude={restaurant.geometry.Coordinates[1]}
+                        key={restaurant.id} 
+                        latitude={restaurant.geolocation[0]}  
+                        longitude={restaurant.geolocation[1]}
                     >
                         <button className="placeIcon" onClick={(event) => { 
                             setSelectedRestaurant(event, restaurant)
@@ -100,8 +99,8 @@ class Map extends Component {
               {selectedRestaurant !== null ? (
                 <React.Fragment>
                   <Popup 
-                    latitude={selectedRestaurant.geometry.Coordinates[0]} 
-                    longitude={selectedRestaurant.geometry.Coordinates[1]}
+                    latitude={selectedRestaurant.geolocation[0]}  
+                    longitude={selectedRestaurant.geolocation[1]}
                     onClose={async()=>{
                         await this.setState({selectedRestaurant:null})
                     }}
