@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ReactMapGL, {Marker, Popup, GeolocateControl} from 'react-map-gl';
+import ReactMapGL, {Marker, Popup} from 'react-map-gl';
+import axios from 'axios';
 // import mapboxgl from 'mapbox-gl';
 import './Map.css';
 import placeIcon from '../../assets/images/PlaceIcon.png'
@@ -10,33 +11,31 @@ class Map extends Component {
         this.state = {
             viewport: {
                 width: '100vw',
-                height: '100vh',
-                latitude: 37.7577,
-                longitude: -122.4376,
+                height: '80vh',
+                latitude: 40.705254,
+                longitude: -74.008917,
                 zoom: 12
               },
               selectedRestaurant: null,
               restaurants: [{
-                              type: "Restuarant",
-                              features: {
-                                  Id: 960,
-                                  Name: "Nob Hill Cafe",
-                                  Reviews: 5,
-                                  Address: "1152 Taylor St, San Francisco, CA 94108",
-                                  Hours: null,
-                                  Description: "This relaxed cafe serves Tuscan pastas & pizzas in a quaint space that recalls old San Francisco",
-                                  FoodType: ["Comfort Food", "Pizza"],
-                                  Allergies: ["Peanuts", "Lentils"]
-                              },
-                              geometry: {
-                                  Coordinates: [37.792980, -122.435790]
-                              }
-                          }
-              ]
+                id: "81cad0fa-b9a5-44f1-aa1a-6c1ef9d4da0e",
+                street: "127 Pearl St",
+                city: "New York",
+                state: "NY",
+                country: "USA",
+                zip: "10005",
+                geolocation: [
+                40.704881,
+                -74.008656
+                ],
+                restaurantId: "4519ffb3-f340-44f1-9519-8804d096e1e0",
+                createdAt: "2019-12-07T18:34:35.678Z",
+                updatedAt: "2019-12-07T18:34:35.678Z"
+                }]
         }
     };
     componentDidMount(){
-        
+        this.getRestaurant()
     }
     locateUser = () => {
         // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
@@ -44,20 +43,20 @@ class Map extends Component {
         navigator.geolocation.getCurrentPosition(async(position) => {
             console.log(position)
             this.setState({viewport:{
-                width: '100vw',
-                height: '100vh',
+                width: '80vw',
+                height: '80vh',
                 longitude: position.coords.longitude,
                 latitude: position.coords.latitude,
                 zoom: 14
           }});
         });
       }
-    // getRestaurant(){
-    //     getRestaurant()
-    //     //will need an api call to get all the restaurants within the viewport 
-    //     //can then take this data and render on the map with the Marker component
-    //     //alternatively, we could preload the data for faster load times 
-    // }
+    getRestaurant = async () => {
+        console.log('path-->', `${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)
+        const newRestaurants = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)).data;
+        console.log("newRestaturants", newRestaurants)
+        this.setState({restaurants: newRestaurants})
+    }
     setSelectedRestaurant = async (event, restaurant) => {
         event.preventDefault();
         await this.setState({selectedRestaurant:restaurant})
@@ -81,18 +80,18 @@ class Map extends Component {
               mapStyle="mapbox://styles/grey-matter/ck3800c9m5wec1cp6j6wffxii"
               onViewportChange={(viewport) => this.setState({viewport})}
               >
-            <button class="primary" onClick={locateUser}>Current Location</button>
-              {restaurants.map(restaurant=>(
-                <React.Fragment>
+            <button className="primary" onClick={locateUser}>Current Location</button>
+              {restaurants.map((restaurant,idx) => (
+                <React.Fragment key={idx}>
                     <Marker 
-                        key={restaurant.features.Id} 
-                        latitude={restaurant.geometry.Coordinates[0]}  
-                        longitude={restaurant.geometry.Coordinates[1]}
+                        key={restaurant.id} 
+                        latitude={restaurant.geolocation[0]}  
+                        longitude={restaurant.geolocation[1]}
                     >
-                        <button class="placeIcon" onClick={(event) => { 
+                        <button className="placeIcon" onClick={(event) => { 
                             setSelectedRestaurant(event, restaurant)
                             }}>
-                        <img src={placeIcon} height="40" width="20"/>
+                        <img src={placeIcon} height="40" width="20" alt=""/>
                     </button>
                     </Marker>
                 </React.Fragment>
@@ -100,8 +99,8 @@ class Map extends Component {
               {selectedRestaurant !== null ? (
                 <React.Fragment>
                   <Popup 
-                    latitude={selectedRestaurant.geometry.Coordinates[0]} 
-                    longitude={selectedRestaurant.geometry.Coordinates[1]}
+                    latitude={selectedRestaurant.geolocation[0]}  
+                    longitude={selectedRestaurant.geolocation[1]}
                     onClose={async()=>{
                         await this.setState({selectedRestaurant:null})
                     }}

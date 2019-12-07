@@ -3,19 +3,22 @@ require('dotenv').config();
 // const cors = require('cors')
 
 /* app setup */
-const express = require('express')
-const app = express()
-const cookieSession = require('cookie-session')
-const passport = require('passport')
+const express = require('express');
+const app = express();
+var cors = require('cors');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 const db = require('./db/');
+
+app.use(cors());
 
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
   keys: [process.env.SESSION_KEY]
-}))
+}));
 
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 
 // API Routes

@@ -1,0 +1,22 @@
+#searchBar {
+    position: absolute;
+    top: 3%;
+    z-index: 1;
+    align-content: center;
+    height: 20px;
+    width: 70%;
+    align-content: center;
+    border-color: #318BFF;
+    border-width: 20px;
+    background: white;
+    opacity: 0.5;
+}
+
+#searchBar img {
+      height:80%
+}
+
+#searchBar input {
+    background: none;
+    border: none;
+}
