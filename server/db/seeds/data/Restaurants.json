@@ -1703,32 +1703,32 @@
                 "price": 7.95
             },
             {
-                "name": "54. Breakfast Quesadilla",
+                "name": "Breakfast Quesadilla",
                 "description": "Egg whites, turkey bacon, low-fat cheddar and jalapenos.",
                 "price": 12.45
             },
             {
-                "name": "37. Fiesta Grande Salad",
+                "name": "Fiesta Grande Salad",
                 "description": "Romaine lettuce, avocado, roasted corn, black beans, and pepper Jack.",
                 "price": 11.95
             },
             {
-                "name": "7. Fit Fajita Burrito",
+                "name": "Fit Fajita Burrito",
                 "description": "Chicken, onions, peppers, avocado, lettuce, hot sauce and brown rice. Served in whole wheat tortilla.",
                 "price": 12.45
             },
             {
-                "name": "46. Muscle Repair Plate",
+                "name": "Muscle Repair Plate",
                 "description": "Chicken, steak, cactus, pico de gallo, pinto mash, quinoa and Al Horno sauce.",
                 "price": 15.45
             },
             {
-                "name": "28. Cactus Torta",
+                "name": "Cactus Torta",
                 "description": "Pressed Mexican sandwich served on a whole wheat with pepper jack, avocado, pickled jalapeno, lettuce, tomato and low fat sour cream.",
                 "price": 10.45
             },
             {
-                "name": "76. Side of Chicken",
+                "name": "Side of Chicken",
                 "description": "",
                 "price": 7.65
             },

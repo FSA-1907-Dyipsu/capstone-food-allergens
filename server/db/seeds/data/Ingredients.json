@@ -68,5 +68,124 @@
         "ingredients": [
             "bison", "bread", "egg", "garlic", "pepper", "olive", "cheese"
         ] 
-    }
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "DIVER SEA SCALLOPS",
+        "ingredients": [
+            "bison", "bread", "egg", "garlic", "pepper", "olive", "cheese"
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Prosciutto Di Parma",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Shellfish Platter",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Hanover Steak & Cheese",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Roasted Branzino Salad",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "Onion Soup Au Gratin",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Baked Steak Nachos Tray",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Chia Pancakes Platter",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Muscle Repair Platter",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Low-Sugar Chocolate Mousse Cake",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Al Horno Lean Mexican Kitchen",
+        "dishName": "Cactus Torta",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "",
+        "ingredients": [
+            ""
+        ] 
+    },
+    {
+        "restaurantName": "Underground Pizza",
+        "dishName": "",
+        "ingredients": [
+            ""
+        ] 
+    },
 ]
