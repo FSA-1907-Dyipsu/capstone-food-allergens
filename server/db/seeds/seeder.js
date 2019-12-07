@@ -60,6 +60,7 @@ const createIngredientData = async (dishIngredients) => {
         restaurantId: restoIdMemo[restaurantName]
       }
     })
+
     for (let ingredient of ingredients) {
       let existingIngredient = await Ingredients.findOne({
         where: {
@@ -71,6 +72,7 @@ const createIngredientData = async (dishIngredients) => {
           name: ingredient
         })
       }
+      
       await existingDish.addIngredient(existingIngredient)
     }
   }
