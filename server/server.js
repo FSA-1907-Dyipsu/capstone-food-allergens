@@ -3,19 +3,22 @@ require('dotenv').config();
 // const cors = require('cors')
 
 /* app setup */
-const express = require('express')
-const app = express()
-const cookieSession = require('cookie-session')
-const passport = require('passport')
+const express = require('express');
+const app = express();
+var cors = require('cors');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
 const db = require('./db/');
+
+app.use(cors());
 
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
   keys: [process.env.SESSION_KEY]
-}))
+}));
 
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 
 // API Routes
@@ -23,8 +26,8 @@ app.use(express.json());
 app.use('/api/auth', require('./api/auth'));
 app.use('/api/user', require('./api/user'));
 app.use('/api/dishes', require('./api/dishes'));
-app.use('/api/restaurants', require('./api/restaurants'))
-app.use('/api/allergens', require('./api/allergens'))
+app.use('/api/restaurants', require('./api/restaurants'));
+app.use('/api/allergens', require('./api/allergens'));
 
 app.use(({ message }, req, res, next) => {
   res.status(500).send({ message });
