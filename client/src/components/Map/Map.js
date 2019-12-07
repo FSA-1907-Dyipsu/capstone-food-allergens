@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactMapGL, {Marker, Popup, GeolocateControl} from 'react-map-gl';
+import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import axios from 'axios';
 // import mapboxgl from 'mapbox-gl';
 import './Map.css';
@@ -81,8 +81,8 @@ class Map extends Component {
               onViewportChange={(viewport) => this.setState({viewport})}
               >
             <button className="primary" onClick={locateUser}>Current Location</button>
-              {restaurants.map(restaurant => (
-                <React.Fragment>
+              {restaurants.map((restaurant,idx) => (
+                <React.Fragment key={idx}>
                     <Marker 
                         key={restaurant.id} 
                         latitude={restaurant.geolocation[0]}  
@@ -91,7 +91,7 @@ class Map extends Component {
                         <button className="placeIcon" onClick={(event) => { 
                             setSelectedRestaurant(event, restaurant)
                             }}>
-                        <img src={placeIcon} height="40" width="20"/>
+                        <img src={placeIcon} height="40" width="20" alt=""/>
                     </button>
                     </Marker>
                 </React.Fragment>

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Icons from '../../assets/images/Allergy_Icons/consolidate_Icons'
 import './Filters.css';
 
@@ -30,8 +30,8 @@ class Filters extends Component {
             return(
                 <div className="individualFilterContainer" key={idx}>
                     {this.state.filters[allergy] === true ? 
-                    <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon"/> </button> : 
-                    <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon"/> </button>}
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/> </button> : 
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt=""/> </button>}
                 </div> 
             )
         })} </div>
