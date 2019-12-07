@@ -30,11 +30,4 @@ router.get('/:dishId',  async (req,res,next) => {
   res.send(ingredientsRaw)
 })
 
-router.get('/restaurant/:restId', async (req, res, next) =>{
-  const allergens = (await Allergens.findAll({include:{models:Dishes}})).reduce((allergensMap, curr) => {
-    allergensMap[curr.id] = curr.name
-    return allergensMap
-  }, {})
-  res.send('hi')
-})
 module.exports = router

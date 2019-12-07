@@ -28,8 +28,15 @@ router.get('/', (req, res, next) => {
     .catch(next)
 });
 
-//get by an ID
-router.get('/:id', async (req, res, next) => {
+//get just the restauraunt
+router.get('/:id', (req, res, next) => {
+  Restaurants.findByPk(req.params.id)
+    .then(restaurant => res.send(restaurant))
+    .catch(next)
+})
+
+//get allergens in a restoby an ID
+router.get('/:id/allergens', async (req, res, next) => {
   const restaurant = await Restaurants.findByPk(req.params.id, {include:{model:Dishes, include:[{model:Ingredients, include:[Allergens]}]}})
   const dishes = restaurant.dishes
   const allergens = dishes.reduce((accum, dish) => {
