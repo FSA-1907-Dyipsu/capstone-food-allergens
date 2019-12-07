@@ -8,7 +8,7 @@ class Search extends Component {
     render() { 
       return (
              <div id="searchBar">
-                 <img src={searchIcon} id="searchIcon"/> <input type="text" id="searchfield"/>
+                 <img src={searchIcon} id="searchIcon" alt=""/> <input type="text" id="searchfield"/>
             </div>
         )
     }

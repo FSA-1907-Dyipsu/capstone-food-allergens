@@ -4,6 +4,7 @@ import './Filters.css';
 
 class Filters extends Component {
     state = {
+        toggle: false,
         filters: {
             dairy: false,
             eggs: false,
@@ -14,24 +15,26 @@ class Filters extends Component {
             treenuts: false
         }
     }
-    async componentDidMount() {
-        // ILL NEED AN API  CALL HERE FOR THE ALLERGIES IN THE DATABASE
-    }
     onClick = (allergy) => {
-        
-        // this.state.filters[allergy] = !this.state[allergy]
+        const filters = this.state.filters
+        filters[allergy] = !filters[allergy]
+        this.setState({filters})
+    }
+    filterToggle = () => {
+
     }
     render() { 
       return (
-        Object.keys(Icons.unselected).map((allergy)=>{
+        <div className="filterContainer">
+        {Object.keys(Icons.unselected).map((allergy,idx)=>{
             return(
-                <div className="filterContainer">
+                <div className="individualFilterContainer" key={idx}>
                     {this.state.filters[allergy] === true ? 
-                    <button onClick={this.onClick(allergy)}> <img src={Icons.selected[allergy]} className="filterIconTrue"/> <div className="filterLabelTrue">{`${allergy}`}</div> </button> : 
-                    <button onClick={this.onClick(allergy)}> <img src={Icons.unselected[allergy]} className="filterIconFalse"/> <div className="filterLabelFalse">{`${allergy}`}</div> </button>}
-                </div>
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon"/> </button> : 
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon"/> </button>}
+                </div> 
             )
-        })
+        })} </div>
       );
     }
   }

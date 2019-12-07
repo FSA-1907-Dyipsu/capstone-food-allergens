@@ -1,20 +1,37 @@
 
-
 .filterContainer {
-    justify-content: flex-end;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 250px;
+    bottom: 75px;
+    right: 10px;
+    z-index: 1;
 }
 
-.filterIconFalse {
-    height: 10px;
-    width: 10px;
-    border-color: purple;
+button {
+    display: flex;
+    align-items: center;
+}
+
+.filterIcon {
+    height: 20px;
+    width: 20px;
+    padding: 2px;
+    display: block;
     background: white;
+    opacity: 0.7;
     border-radius: 50%;
 }
 
-.filterLabelFalse {
+.filterLabel {
     height: 10px;
-    width: 10px;
-    border-color: purple;
-    background: purple;
+    padding: 5px;
+    border-radius: 2rem;
+    margin-right: 10px;
+    width: auto;
+    background: white;
+    opacity: 0.7;
 }

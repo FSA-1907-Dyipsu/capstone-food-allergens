@@ -54,7 +54,8 @@ class Map extends Component {
         });
       }
     getRestaurant = async () => {
-        const restaurants = await axios.get(`${process.env.REACT_APP_PROXY}/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`).data;
+        console.log('path-->', process.env.REACT_APP_PROXY)
+        const restaurants = (await axios.get(`${process.env.REACT_APP_PROXY}/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)).data;
         console.log(restaurants)
     }
     setSelectedRestaurant = async (event, restaurant) => {
