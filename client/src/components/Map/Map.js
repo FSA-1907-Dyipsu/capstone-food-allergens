@@ -14,7 +14,7 @@ class Map extends Component {
                 height: '80vh',
                 latitude: 40.705254,
                 longitude: -74.008917,
-                zoom: 12
+                zoom: 16
               },
               selectedRestaurant: null,
               restaurants: [{
@@ -47,9 +47,27 @@ class Map extends Component {
                 height: '80vh',
                 longitude: position.coords.longitude,
                 latitude: position.coords.latitude,
-                zoom: 14
+                zoom: 18
           }});
         });
+      }
+      filterByAllergen = (restaurant) => {
+        const { filters } = this.props
+        const { setSelectedRestaurant } = this
+        Object.keys(filters).map(function(key, index) {
+            if(filters[key] === true && restaurant.allergens[key]) {
+                console.log("allergy caught")
+                return (
+                    <button className="placeIcon" onClick={(event) => {setSelectedRestaurant(event, restaurant)}}>
+                        <img src={placeIcon} height="40" width="20" alt=""/>
+                    </button>
+                )
+            }
+          });
+        return <button className="placeIcon" onClick={(event) => {setSelectedRestaurant(event, restaurant)}}>
+        <img src={placeIcon} height="40" width="20" alt=""/>
+    </button>
+
       }
     getRestaurant = async () => {
         console.log('path-->', `${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)
@@ -71,7 +89,8 @@ class Map extends Component {
     }
     render(){
         const {restaurants, selectedRestaurant} = this.state;
-        const {setSelectedRestaurant, closeEffect, locateUser} = this
+        const { filters } = this.props
+        const {setSelectedRestaurant, closeEffect, locateUser, filterByAllergen} = this
         closeEffect()
         return(
             <ReactMapGL
@@ -83,24 +102,19 @@ class Map extends Component {
             <button className="primary" onClick={locateUser}>Current Location</button>
               {restaurants.map((restaurant,idx) => (
                 <React.Fragment key={idx}>
-                    <Marker 
-                        key={restaurant.id} 
-                        latitude={restaurant.geolocation[0]}  
-                        longitude={restaurant.geolocation[1]}
+                    <Marker key={restaurant.id} 
+                        latitude={restaurant.geolocation[0]*1}  
+                        longitude={restaurant.geolocation[1]*1}
                     >
-                        <button className="placeIcon" onClick={(event) => { 
-                            setSelectedRestaurant(event, restaurant)
-                            }}>
-                        <img src={placeIcon} height="40" width="20" alt=""/>
-                    </button>
+                        {filterByAllergen(restaurant)}
                     </Marker>
                 </React.Fragment>
               ))}
               {selectedRestaurant !== null ? (
                 <React.Fragment>
                   <Popup 
-                    latitude={selectedRestaurant.geolocation[0]}  
-                    longitude={selectedRestaurant.geolocation[1]}
+                    latitude={selectedRestaurant.geolocation[0]*1}  
+                    longitude={selectedRestaurant.geolocation[1]*1}
                     onClose={async()=>{
                         await this.setState({selectedRestaurant:null})
                     }}

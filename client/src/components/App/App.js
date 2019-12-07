@@ -8,18 +8,32 @@ import './App.css';
 
 class App extends Component {
   state = {
-    user: null
+    user: null,
+    filters: {
+        dairy: false,
+        eggs: false,
+        gluten: false,
+        peanuts: false,
+        soy: false,
+        shellfish: false,
+        treenuts: false
+    }
   }
   async componentDidMount() {
     this.getUser()
   }
+  onFilterChange = (allergy) => {
+    const filters = this.state.filters
+    filters[allergy] = !filters[allergy]
+    this.setState({filters})
+  } 
   render() { 
-    const { user } = this.state
+    const { user, filters} = this.state
     return (
       <div className="App">
           <Search />
-          <Map />
-          <Filters />
+          <Map filters={filters}/>
+          <Filters filters={filters} onFilterChange={this.onFilterChange}/>
           <Nav user={user}/>
       </div>
     );
