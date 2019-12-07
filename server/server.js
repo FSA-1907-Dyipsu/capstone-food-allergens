@@ -25,6 +25,7 @@ app.use('/api/user', require('./api/user'));
 app.use('/api/dishes', require('./api/dishes'));
 app.use('/api/restaurants', require('./api/restaurants'))
 app.use('/api/allergens', require('./api/allergens'))
+// app.use('/api/reviews', require('./api/reviews'))
 
 app.use(({ message }, req, res, next) => {
   res.status(500).send({ message });
