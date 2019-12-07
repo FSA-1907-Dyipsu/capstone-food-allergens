@@ -68,5 +68,12 @@
         "ingredients": [
             "bison", "bread", "egg", "garlic", "pepper", "olive", "cheese"
         ] 
+    },
+    {
+        "restaurantName": "Harry's Cafe & Steak",
+        "dishName": "DIVER SEA SCALLOPS",
+        "ingredients": [
+            "bison", "bread", "egg", "garlic", "pepper", "olive", "cheese"
+        ] 
     }
 ]

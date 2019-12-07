@@ -116,7 +116,7 @@
         ]
     },
     {
-        "name": "eggs",
+        "name": "egg",
         "description": "Egg allergy is one of the most common food allergies in children, second only to milk allergy. Most children eventually outgrow an allergy to egg.",
         "ingredients": [
             "albumin",
