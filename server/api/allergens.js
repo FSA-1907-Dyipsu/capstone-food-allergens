@@ -26,7 +26,7 @@ router.get('/:dishId',  async (req,res,next) => {
     if (allergenName) allergensMap.push(allergenName)
     return allergensMap
   }, [])
-    console.log('mapped ing->', ingredients)
+    // console.log('mapped ing->', ingredients)
   res.send(ingredientsRaw)
 })
 

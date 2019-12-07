@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
 
 //get just the restauraunt
 router.get('/:id', (req, res, next) => {
-  Restaurants.findByPk(req.params.id)
+  Restaurants.findByPk(req.params.id,{include:{model:Addresses}})
     .then(restaurant => res.send(restaurant))
     .catch(next)
 })
@@ -57,7 +57,7 @@ router.get('/location/:lat/:long', async(req, res, next) => {
   // if front end can send current geolocation back as params, we can find nearby restos 
   const userLat = req.params.lat
   const userLong = req.params.long
-  let restos = await Addresses.findAll()
+  let restos = await Addresses.findAll({include:{model:Restaurants}})
   restos = restos.filter(resto => Haversine(userLat, userLong, resto.geolocation[0], resto.geolocation[1]) < 1)
   let uniq = Array.from(new Set(restos.map(el => el.street))).map(street =>{
     return restos.find(resto => resto.street === street)
