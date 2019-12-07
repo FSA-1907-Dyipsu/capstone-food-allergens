@@ -12,7 +12,7 @@ class Map extends Component {
         this.state = {
             viewport: {
                 width: '100vw',
-                height: '80vh',
+                height: '100vh',
                 latitude: 40.705254,
                 longitude: -74.008917,
                 zoom: 16
@@ -44,8 +44,8 @@ class Map extends Component {
         navigator.geolocation.getCurrentPosition(async(position) => {
             console.log(position)
             this.setState({viewport:{
-                width: '80vw',
-                height: '80vh',
+                width: '100vw',
+                height: '100vh',
                 longitude: position.coords.longitude,
                 latitude: position.coords.latitude,
                 zoom: 18
