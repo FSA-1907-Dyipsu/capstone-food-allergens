@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import axios from 'axios';
 import Ping from '../Ping/Ping.js'
+import Restaurant from '../Restaurant/Restaurant.js'
 // import mapboxgl from 'mapbox-gl';
 import './Map.css';
 
@@ -91,26 +92,26 @@ class Map extends Component {
                         latitude={restaurant.geolocation[0]*1}  
                         longitude={restaurant.geolocation[1]*1}
                     >
-                        
                         <Ping restaurant={restaurant} filters={filters} />
                     </Marker>
                 </button>
               ))}
               {selectedRestaurant !== null ? (
-                <React.Fragment>
-                  <Popup 
-                    latitude={selectedRestaurant.geolocation[0]*1}  
-                    longitude={selectedRestaurant.geolocation[1]*1}
-                    onClose={async()=>{
-                        await this.setState({selectedRestaurant:null})
-                    }}
-                    >
-                      <div>
-                          <h2>{selectedRestaurant.name}</h2>
-                          <p>{selectedRestaurant.description}</p>
-                      </div>
-                  </Popup>
-                  </React.Fragment>
+                <Restaurant selectedRestaurant={selectedRestaurant}/>
+                // <React.Fragment>
+                //   <Popup 
+                //     latitude={selectedRestaurant.geolocation[0]*1}  
+                //     longitude={selectedRestaurant.geolocation[1]*1}
+                //     onClose={async()=>{
+                //         await this.setState({selectedRestaurant:null})
+                //     }}
+                //     >
+                //       <div>
+                //           <h2>{selectedRestaurant.name}</h2>
+                //           <p>{selectedRestaurant.description}</p>
+                //       </div>
+                //   </Popup>
+                //   </React.Fragment>
               ) : null}
             </ReactMapGL>);
     }
