@@ -18,7 +18,7 @@ class Filters extends Component {
         <div className="filterContainer">
         {Object.keys(Icons.unselected).map((allergy,idx)=>{
             return(
-                <div className="individualFilterContainer" key={idx}>
+                <div key={idx}>
                     {filters[allergy] === true ? 
                     <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/> </button> : 
                     <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt=""/> </button>}

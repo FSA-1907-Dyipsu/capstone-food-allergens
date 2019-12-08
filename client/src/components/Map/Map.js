@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import axios from 'axios';
+import Ping from '../Ping/Ping.js'
 // import mapboxgl from 'mapbox-gl';
 import './Map.css';
-import placeIcon from '../../assets/images/PlaceIcon.png'
+
 
 class Map extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Map extends Component {
         this.state = {
             viewport: {
                 width: '100vw',
-                height: '80vh',
+                height: '100vh',
                 latitude: 40.705254,
                 longitude: -74.008917,
                 zoom: 16
@@ -43,31 +44,13 @@ class Map extends Component {
         navigator.geolocation.getCurrentPosition(async(position) => {
             console.log(position)
             this.setState({viewport:{
-                width: '80vw',
-                height: '80vh',
+                width: '100vw',
+                height: '100vh',
                 longitude: position.coords.longitude,
                 latitude: position.coords.latitude,
                 zoom: 18
           }});
         });
-      }
-      filterByAllergen = (restaurant) => {
-        const { filters } = this.props
-        const { setSelectedRestaurant } = this
-        Object.keys(filters).map(function(key, index) {
-            if(filters[key] === true && restaurant.allergens[key]) {
-                console.log("allergy caught")
-                return (
-                    <button className="placeIcon" onClick={(event) => {setSelectedRestaurant(event, restaurant)}}>
-                        <img src={placeIcon} height="40" width="20" alt=""/>
-                    </button>
-                )
-            }
-          });
-        return <button className="placeIcon" onClick={(event) => {setSelectedRestaurant(event, restaurant)}}>
-        <img src={placeIcon} height="40" width="20" alt=""/>
-    </button>
-
       }
     getRestaurant = async () => {
         console.log('path-->', `${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)
@@ -101,14 +84,17 @@ class Map extends Component {
               >
             <button className="primary" onClick={locateUser}>Current Location</button>
               {restaurants.map((restaurant,idx) => (
-                <React.Fragment key={idx}>
+                <button key={idx} onClick={() => {
+                    this.setState({selectedRestaurant:restaurant})
+                }}>
                     <Marker key={restaurant.id} 
                         latitude={restaurant.geolocation[0]*1}  
                         longitude={restaurant.geolocation[1]*1}
                     >
-                        {filterByAllergen(restaurant)}
+                        
+                        <Ping restaurant={restaurant} filters={filters} />
                     </Marker>
-                </React.Fragment>
+                </button>
               ))}
               {selectedRestaurant !== null ? (
                 <React.Fragment>
@@ -120,8 +106,8 @@ class Map extends Component {
                     }}
                     >
                       <div>
-                          <h2>{selectedRestaurant.features.Name}</h2>
-                          <p>{selectedRestaurant.features.Description}</p>
+                          <h2>{selectedRestaurant.name}</h2>
+                          <p>{selectedRestaurant.description}</p>
                       </div>
                   </Popup>
                   </React.Fragment>
