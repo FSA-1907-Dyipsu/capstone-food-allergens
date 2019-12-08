@@ -67,8 +67,8 @@ class Map extends Component {
     }
     render(){
         const {restaurants, selectedRestaurant} = this.state;
-        const { filters } = this.props
-        const {setSelectedRestaurant, closeEffect, locateUser, filterByAllergen} = this
+        const { filters, onRestaurantSelection } = this.props
+        const {setSelectedRestaurant, closeEffect, locateUser, filterByAllergen } = this
         closeEffect()
         return(
             <ReactMapGL
@@ -81,12 +81,13 @@ class Map extends Component {
               {restaurants.map((restaurant,idx) => (
                 <button key={idx} onClick={() => {
                     this.setState({selectedRestaurant:restaurant})
+                    onRestaurantSelection(restaurant)
                 }}>
                     <Marker key={restaurant.id} 
                         latitude={restaurant.geolocation[0]*1}  
                         longitude={restaurant.geolocation[1]*1}
                     >
-                        <Ping restaurant={restaurant} filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
+                        <Ping restaurant={restaurant} filters={filters} />
                     </Marker>
                 </button>
               ))}

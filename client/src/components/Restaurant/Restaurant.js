@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Restaurant.css';
+import starIcon from '../../assets/images/StarIcon.png';
+import prof_overalls from '../../assets/images/prof_overalls.jpg';
+import prof_cheeta from '../../assets/images/prof_cheeta.jpg';
 
 class Restaurant extends Component {
     constructor() {
@@ -23,10 +26,21 @@ class Restaurant extends Component {
     // }
     render() { 
         const { selectedRestaurant } = this.props
+        console.log(selectedRestaurant)
         return (
-            
                 <div className="restaurantCard">
-                    {selectedRestaurant.name}{selectedRestaurant.id}
+                    <div className="cardHeader">
+                        {selectedRestaurant.name}
+                        {/* <img src={prof_cheeta} alt=""/> */}
+                        <div class="Rating">
+                            <img src={starIcon} class="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} class="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} class="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} class="Rating--Star"/>
+                            <img src={starIcon} class="Rating--Star"/>
+                        {selectedRestaurant.street}
+                        </div>  
+                    </div>
                 </div>
             
             

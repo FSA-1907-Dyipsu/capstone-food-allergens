@@ -24,6 +24,9 @@ class App extends Component {
   async componentDidMount() {
     this.getUser()
   }
+  componentDidUpdate() {
+    console.log(this.state)
+  }
   onFilterChange = (allergy) => {
     const filters = this.state.filters
     filters[allergy] = !filters[allergy]
