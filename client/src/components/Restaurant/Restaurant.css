@@ -1,6 +1,7 @@
 .restaurantCard {
-    background: white;
-    opacity: 0.9;
+    background-image: linear-gradient(-220deg, #1D1D1D 0%, #100F0F 99%);
+    color:white;
+    opacity: .8;
     border-radius: 1.5rem;
     overflow: hidden;
     position: absolute;;
@@ -22,6 +23,11 @@
 }
   
 .restaurantCard:hover {
-    opacity: 0.8;
+    opacity: 0.9;
     bottom: 0%;
+}
+
+.allergyIcon {
+    height:30px;
+    width:30px;
 }
