@@ -33,7 +33,6 @@ class App extends Component {
   }
   onClick = (allergy) => {
     this.onFilterChange(allergy)
-    console.log(this.state.filters)
   }
   onSubmit = () => {
     const onBoarded = this.state.onBoarded
@@ -41,7 +40,7 @@ class App extends Component {
   }
   render() { 
     const { user, filters, onBoarded} = this.state
-    console.log(onBoarded)
+    console.log(user)
     return (
       <div className="App">
         <HashRouter>
@@ -75,26 +74,6 @@ class App extends Component {
           <button onClick={this.onSubmit}>Save Allergens</button>
         </div>
           }
-          {/* {
-            this.state.onBoarded ? 
-             :
-          <div>
-          <h1>Welcome!</h1>
-          <div>
-          {
-            Object.keys(Icons.unselected).map((allergy, idx) =>{
-                return(
-                  <div key={idx}>    {filters[allergy] === true ? 
-                    <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/> </button> : 
-                    <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt=""/> </button>}
-                  </div>
-                )
-            })
-          }
-          </div>
-          <button onClick={this.onSubmit}>Save Allergens</button>
-        </div>
-          } */}
         </HashRouter>
       </div>
     );
