@@ -3,11 +3,6 @@ import placeIcon from '../../assets/images/PlaceIcon.png';
 import allergenPlaceIcon from '../../assets/images/allergenPlaceIcon.png';
 
 class Ping extends Component {
-    onClick = () => {
-        const { onRestaurantSelection, restaurant } = this.props
-        onRestaurantSelection(restaurant)
-        console.log("hello")
-    }
     render() { 
         let warning = false
         const { filters, restaurant } = this.props

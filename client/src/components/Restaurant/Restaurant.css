@@ -1,14 +1,14 @@
 .restaurantCard {
-    background: black;
-    color: white;
+    background: white;
     opacity: 0.5;
     border-radius: 1.5rem;
     overflow: hidden;
-    position:relative;
+    position: absolute;;
     bottom: -80%;
     height: 90%;
     width: 100%;
     transition: all .3s ease-out;
+    z-index: 2;
 }
   /* .hid-box {
     top: 100%;
@@ -18,7 +18,7 @@
     height: 100%;
   } */
   
-  .restaurantCard:hover {
+  /* .restaurantCard:hover {
     opacity: 0.8;
     bottom: 0%;
-  }
+  } */
