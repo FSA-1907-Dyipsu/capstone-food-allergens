@@ -4,11 +4,13 @@ import Map from '../Map/Map.js'
 import Nav from '../Nav/Nav.js'
 import Search from '../Search/Search.js'
 import Filters from '../Filters/Filters.js'
+import Restaurant from '../Restaurant/Restaurant.js'
 import './App.css';
 
 class App extends Component {
   state = {
     user: null,
+    selectedRestaurant: null,
     filters: {
         dairy: false,
         eggs: false,
@@ -27,14 +29,21 @@ class App extends Component {
     filters[allergy] = !filters[allergy]
     this.setState({filters})
   } 
+  onRestaurantSelection = (restaurant) => {
+    console.log(restaurant)
+    this.setState({selectedRestaurant: restaurant})
+  }
   render() { 
-    const { user, filters} = this.state
+    const { user, filters, selectedRestaurant} = this.state
     return (
       <div className="App">
           <Search />
-          <Map filters={filters}/>
+          <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection}/>
           <Filters filters={filters} onFilterChange={this.onFilterChange}/>
-          <Nav user={user}/>
+          {/* <Nav user={user}/> */}
+          {selectedRestaurant !== null ? (
+                <Restaurant selectedRestaurant={selectedRestaurant}/>
+            ) : null}
       </div>
     );
   }

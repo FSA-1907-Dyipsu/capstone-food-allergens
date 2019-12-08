@@ -7,20 +7,28 @@ class Restaurant extends Component {
         super();
             this.state = {
               restaurant: null,
+              preview: false,
+              show: true
         }
     };
     componentDidMount = async() => {
         const restaurant = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/${this.props.selectedRestaurant.id}`)).data;
-        // const reviews = (await axios.get(`${process.env.REACT_APP_PROXY}/api/reviews/${this.props.selectedRestaurant.id}`)).data;
     }
     componentDidUpdate = async() => {
         const restaurant = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/${this.props.selectedRestaurant.id}`)).data;
         console.log(restaurant)
     }
+    // onClick = () => {
+    //     this.props.onRestaurantSelection(null)
+    // }
     render() { 
         const { selectedRestaurant } = this.props
         return (
-            <div className="restaurantCard">{selectedRestaurant.name}{selectedRestaurant.id}</div>
+            
+                <div className="restaurantCard">
+                    {selectedRestaurant.name}{selectedRestaurant.id}
+                </div>
+            
             
         ) 
     }
