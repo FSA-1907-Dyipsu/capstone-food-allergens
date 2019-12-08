@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {HashRouter, Link} from 'react-router-dom'
 import accountIcon from '../../assets/images/Nav_Icons/Account_Icon.png'
 import homeIcon from '../../assets/images/Nav_Icons/Home_Icon.png'
 // import mapIcon from '../../assets/images/Nav_Icons/Map_Icon.png'
@@ -15,6 +16,7 @@ class Nav extends Component {
     const { user } = this.props
     return (
       <div className="Nav">
+
           <header style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
             <a href='/map'><div><img src={mapIconSelected} height="30" width="30" alt=""/>Map</div></a>
             <a href='/search'><div><img src={searchIcon} height="30" width="30"alt=""/>Search</div></a>
