@@ -17,7 +17,6 @@ class Map extends Component {
                 longitude: -74.008917,
                 zoom: 16
               },
-              selectedRestaurant: null,
               restaurants: [{
                 id: "81cad0fa-b9a5-44f1-aa1a-6c1ef9d4da0e",
                 street: "127 Pearl St",
@@ -58,10 +57,6 @@ class Map extends Component {
         console.log("newRestaturants", newRestaurants)
         this.setState({restaurants: newRestaurants})
     }
-    setSelectedRestaurant = async (event, restaurant) => {
-        event.preventDefault();
-        await this.setState({selectedRestaurant:restaurant})
-    }
     closeEffect = () => {
         const listener = async(e) => {
             if(e.key === "Escape") {
@@ -91,27 +86,10 @@ class Map extends Component {
                         latitude={restaurant.geolocation[0]*1}  
                         longitude={restaurant.geolocation[1]*1}
                     >
-                        
-                        <Ping restaurant={restaurant} filters={filters} />
+                        <Ping restaurant={restaurant} filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
                     </Marker>
                 </button>
               ))}
-              {selectedRestaurant !== null ? (
-                <React.Fragment>
-                  <Popup 
-                    latitude={selectedRestaurant.geolocation[0]*1}  
-                    longitude={selectedRestaurant.geolocation[1]*1}
-                    onClose={async()=>{
-                        await this.setState({selectedRestaurant:null})
-                    }}
-                    >
-                      <div>
-                          <h2>{selectedRestaurant.name}</h2>
-                          <p>{selectedRestaurant.description}</p>
-                      </div>
-                  </Popup>
-                  </React.Fragment>
-              ) : null}
             </ReactMapGL>);
     }
 

@@ -1,0 +1,24 @@
+.restaurantCard {
+    background: black;
+    color: white;
+    opacity: 0.5;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    position:relative;
+    bottom: -80%;
+    height: 90%;
+    width: 100%;
+    transition: all .3s ease-out;
+}
+  /* .hid-box {
+    top: 100%;
+    position: relative;
+    transition: all .3s ease-out;
+    background: #428bca;
+    height: 100%;
+  } */
+  
+  .restaurantCard:hover {
+    opacity: 0.8;
+    bottom: 0%;
+  }
