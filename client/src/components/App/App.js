@@ -12,7 +12,7 @@ import './App.css';
 class App extends Component {
   state = {
     user: null,
-    onBoarded:true,
+    onBoarded:false,
     filters: {
         dairy: false,
         eggs: false,
@@ -31,49 +31,71 @@ class App extends Component {
     filters[allergy] = !filters[allergy]
     this.setState({filters})
   }
-  onAllergyChange = (allergy) =>{
-    const allergies = this.state.temp;
-    if(allergies.includes(allergy)){
-      console.log(allergy)
-    }
+  onClick = (allergy) => {
+    this.onFilterChange(allergy)
+    console.log(this.state.filters)
+  }
+  onSubmit = () => {
+    const onBoarded = this.state.onBoarded
+    this.setState({onBoarded : !onBoarded})
   }
   render() { 
-    const { user, filters} = this.state
-    if(!user){
-      return(
-        <div>
-          <Welcome/>
-        </div>
-      )
-    }
-    else if(user && !this.state.onBoarded){
-      return(
-        <div>
+    const { user, filters, onBoarded} = this.state
+    console.log(onBoarded)
+    return (
+      <div className="App">
+        <HashRouter>
+          {
+            user  && this.state.onBoarded ?
+            <div>
+            <Search />
+            <Map filters={filters}/>
+            <Filters filters={filters} onFilterChange={this.onFilterChange}/>
+            <Nav user={user}/>
+            </div> :
+            !user && !onBoarded ? 
+            <div>
+              <Route component={Welcome}/>
+            </div>
+             :
+             <div>
           <h1>Welcome!</h1>
           <div>
           {
             Object.keys(Icons.unselected).map((allergy, idx) =>{
-              return(
-              <div key={idx} onClick={this.onAllergyChange} name={allergy}>
-                {allergy}
-                <img src={Icons.selected[`${allergy}Selected`]}/>
-              </div>
-              )
+                return(
+                  <div key={idx}>    {filters[allergy] === true ? 
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/> </button> : 
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt=""/> </button>}
+                  </div>
+                )
             })
           }
           </div>
-          <button>Save Allergens</button>
+          <button onClick={this.onSubmit}>Save Allergens</button>
         </div>
-      )
-    }
-    return (
-      <div className="App">
-        <div>
-        <Search />
-        <Map filters={filters}/>
-        <Filters filters={filters} onFilterChange={this.onFilterChange}/>
-        <Nav user={user}/>
+          }
+          {/* {
+            this.state.onBoarded ? 
+             :
+          <div>
+          <h1>Welcome!</h1>
+          <div>
+          {
+            Object.keys(Icons.unselected).map((allergy, idx) =>{
+                return(
+                  <div key={idx}>    {filters[allergy] === true ? 
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/> </button> : 
+                    <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt=""/> </button>}
+                  </div>
+                )
+            })
+          }
+          </div>
+          <button onClick={this.onSubmit}>Save Allergens</button>
         </div>
+          } */}
+        </HashRouter>
       </div>
     );
   }
