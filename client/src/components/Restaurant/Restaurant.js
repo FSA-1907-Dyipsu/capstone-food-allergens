@@ -35,18 +35,20 @@ class Restaurant extends Component {
         return (
                 <div className="restaurantCard">
                     <div className="cardHeader">
-                        {selectedRestaurant.name}
+                        <div id="titleContainer">
+                        <h1>{selectedRestaurant.name}</h1>
                         {/* <img src={prof_cheeta} alt=""/> */}
-                        <div className="Rating">
-                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} className="Rating--Star"/>
-                            <img src={starIcon} className="Rating--Star"/>
                         { selectedRestaurant.allergens.map(allergy => {
                             return <img src={Icons.selected[`${allergy}Selected`]} className="allergyIcon" id={allergy} alt=""/>  
                         })}
-                        {selectedRestaurant.street}
+                         <div className="Rating">
+                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} className="Rating--Star"/>
+                            <img src={starIcon} className="Rating--Star"/>
+                        </div>
+                        <div id="address">{selectedRestaurant.street}</div>
                         </div>  
                     </div>
                 </div>
