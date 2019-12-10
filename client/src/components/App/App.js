@@ -15,12 +15,12 @@ class App extends Component {
     selectedRestaurant: null,
     filters: {
       dairy: false,
-      eggs: false,
+      egg: false,
       gluten: false,
-      peanuts: false,
       soy: false,
       shellfish: false,
-      treenuts: false
+      treenut: false,
+      fish: false
     }
   }
   async componentDidMount() {
