@@ -4,6 +4,7 @@ import axios from 'axios';
 import Ping from '../Ping/Ping.js'
 import searchIcon from '../../assets/images/Nav_Icons/Search_Icon Copy.png'
 import './Map.css';
+import { debounce } from 'underscore';
 
 class Map extends Component {
     constructor(props) {
@@ -34,6 +35,7 @@ class Map extends Component {
             searchText: '',
             searchedRestos: []
         }
+        this.handleSearchChangeThrottled = debounce(this.handleSearchChange, 300)
     };
     componentDidMount() {
         this.getRestaurant()
@@ -66,12 +68,17 @@ class Map extends Component {
         };
         window.addEventListener("keydown", listener);
     }
-    onUpdate(ev) {
-        const { restaurants, searchText } = this.state
-        this.setState({ searchText: ev.target.value })
-        const searched = restaurants.filter(resto => resto.name.toLowerCase().includes(searchText))
-        this.setState({ searchedRestos: searched })
-        this.forceUpdate()
+    handleSearchChange({ target }) {
+        if (target) {
+            const { restaurants, searchText } = this.state
+            this.setState({ searchText: target.value })
+            const searched = target.value ? restaurants.filter(resto => resto.name.toLowerCase().includes(searchText)) : []
+            this.setState({ searchedRestos: searched })
+        }
+    }
+    delaySearchChange(event) {
+        event.persist()
+        this.handleSearchChangeThrottled(event)
     }
     onRestaurantSelection = (restaurant) => {
         this.setState({ selectedRestaurant: restaurant })
@@ -85,7 +92,7 @@ class Map extends Component {
             <div>
                 <div id="search-bar">
                     <img src={searchIcon} id="searchIcon" alt="" />
-                    <input type="text" id="searchfield" onChange={(ev) => this.onUpdate(ev)} />
+                    <input type="text" id="searchfield" onChange={(ev) => this.delaySearchChange(ev)} />
                 </div>
                 <ReactMapGL
                     {...this.state.viewport}

@@ -72,9 +72,9 @@ class App extends Component {
                   <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
                   <Filters filters={filters} onFilterChange={this.onFilterChange} />
                   <Nav user={user} />
-                  {selectedRestaurant !== null ? (
+                  {selectedRestaurant && (
                     <Restaurant selectedRestaurant={selectedRestaurant} />
-                  ) : null}
+                  )}
                 </>
               )
         }
