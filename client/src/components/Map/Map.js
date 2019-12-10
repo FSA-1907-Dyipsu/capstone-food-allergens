@@ -126,7 +126,6 @@ class Map extends Component {
                 </ReactMapGL>
             </div>);
     }
-
 }
 
 export default Map;
