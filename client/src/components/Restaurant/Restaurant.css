@@ -1,0 +1,51 @@
+.restaurantCard {
+    background-image: linear-gradient(-220deg, #1D1D1D 0%, #100F0F 99%);
+    color:white;
+    opacity: .8;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    position: absolute;;
+    bottom: -80%;
+    height: 90%;
+    width: 100%;
+    transition: all .3s ease-out;
+    display: flex;
+    flex-direction: row;
+    z-index: 2;
+}
+
+h1 {
+    font-style: bold;
+    font-size: 1rem;
+    text-align: left;
+}
+
+#address {
+    font-style: light;
+    font-size: .8rem;
+}
+
+#titleContainer {
+    display: inline-flex;
+    padding: 5%
+}
+
+.Rating--Star {
+    filter: grayscale(100%); 
+    opacity: .3; 
+}
+
+.Rating--Star__active {
+    filter: grayscale(0%); 
+    opacity: .9;
+}
+  
+.restaurantCard:hover {
+    opacity: 0.9;
+    bottom: 0%;
+}
+
+.allergyIcon {
+    height:30px;
+    width:30px;
+}

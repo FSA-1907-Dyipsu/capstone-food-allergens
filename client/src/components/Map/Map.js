@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import axios from 'axios';
 import Ping from '../Ping/Ping.js'
+import Search from '../Search/Search.js'
+import searchIcon from '../../assets/images/Nav_Icons/Search_Icon Copy.png' 
 // import mapboxgl from 'mapbox-gl';
 import './Map.css';
 
@@ -17,7 +19,6 @@ class Map extends Component {
                 longitude: -74.008917,
                 zoom: 16
               },
-              selectedRestaurant: null,
               restaurants: [{
                 id: "81cad0fa-b9a5-44f1-aa1a-6c1ef9d4da0e",
                 street: "127 Pearl St",
@@ -32,7 +33,9 @@ class Map extends Component {
                 restaurantId: "4519ffb3-f340-44f1-9519-8804d096e1e0",
                 createdAt: "2019-12-07T18:34:35.678Z",
                 updatedAt: "2019-12-07T18:34:35.678Z"
-                }]
+                }],
+            searchText:'',
+            searchedRestos:[]
         }
     };
     componentDidMount(){
@@ -55,12 +58,8 @@ class Map extends Component {
     getRestaurant = async () => {
         console.log('path-->', `${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)
         const newRestaurants = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)).data;
-        console.log("newRestaturants", newRestaurants)
+        // console.log("newRestaturants", newRestaurants)
         this.setState({restaurants: newRestaurants})
-    }
-    setSelectedRestaurant = async (event, restaurant) => {
-        event.preventDefault();
-        await this.setState({selectedRestaurant:restaurant})
     }
     closeEffect = () => {
         const listener = async(e) => {
@@ -70,12 +69,27 @@ class Map extends Component {
         };
         window.addEventListener("keydown", listener);
     }
+    onUpdate(ev){
+        const {restaurants, searchText} = this.state
+        this.setState({searchText: ev.target.value})
+        const searched = restaurants.filter(resto => resto.name.toLowerCase().includes(searchText))
+        this.setState({searchedRestos: searched})
+        this.forceUpdate()
+    }
+    onRestaurantSelection = (restaurant) => {
+        console.log(restaurant)
+        this.setState({selectedRestaurant: restaurant})
+      }
     render(){
-        const {restaurants, selectedRestaurant} = this.state;
-        const { filters } = this.props
-        const {setSelectedRestaurant, closeEffect, locateUser, filterByAllergen} = this
+        const {restaurants, selectedRestaurant, searchText, searchedRestos} = this.state;
+        const { filters, onRestaurantSelection } = this.props
+        const {setSelectedRestaurant, closeEffect, locateUser, filterByAllergen } = this
         closeEffect()
         return(
+            <div>
+                <div id="searchBar">
+                     <img src={searchIcon} id="searchIcon" alt=""/> <input type="text" id="searchfield" onChange={ (ev) => this.onUpdate(ev)}/>
+                </div>
             <ReactMapGL
               {...this.state.viewport} 
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -83,36 +97,36 @@ class Map extends Component {
               onViewportChange={(viewport) => this.setState({viewport})}
               >
             <button className="primary" onClick={locateUser}>Current Location</button>
-              {restaurants.map((restaurant,idx) => (
+              { searchedRestos.length ? 
+                searchedRestos.map((restaurant,idx) => (
+                    <button key={idx} onClick={() => {
+                        this.setState({selectedRestaurant:restaurant})
+                        onRestaurantSelection(restaurant)
+                    }}>
+                        <Marker key={restaurant.id} 
+                            latitude={restaurant.geolocation[0]*1}  
+                            longitude={restaurant.geolocation[1]*1}
+                        >
+                            <Ping restaurant={restaurant} filters={filters} />
+                        </Marker>
+                    </button>
+              )) :
+              restaurants.map((restaurant,idx) => (
                 <button key={idx} onClick={() => {
                     this.setState({selectedRestaurant:restaurant})
+                    onRestaurantSelection(restaurant)
                 }}>
                     <Marker key={restaurant.id} 
                         latitude={restaurant.geolocation[0]*1}  
                         longitude={restaurant.geolocation[1]*1}
                     >
-                        
                         <Ping restaurant={restaurant} filters={filters} />
                     </Marker>
                 </button>
-              ))}
-              {selectedRestaurant !== null ? (
-                <React.Fragment>
-                  <Popup 
-                    latitude={selectedRestaurant.geolocation[0]*1}  
-                    longitude={selectedRestaurant.geolocation[1]*1}
-                    onClose={async()=>{
-                        await this.setState({selectedRestaurant:null})
-                    }}
-                    >
-                      <div>
-                          <h2>{selectedRestaurant.name}</h2>
-                          <p>{selectedRestaurant.description}</p>
-                      </div>
-                  </Popup>
-                  </React.Fragment>
-              ) : null}
-            </ReactMapGL>);
+          ))
+              }
+            </ReactMapGL>
+            </div>);
     }
 
 }
