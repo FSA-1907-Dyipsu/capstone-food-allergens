@@ -52,7 +52,6 @@ router.get('/:id/allergens', async (req, res, next) => {
     return accum
   }, new Set())
   const percent = `${((allergyDishCount/dishes.length)*100).toFixed(2)}%`
-  console.log(percent)
   res.send([...allergens, percent])
 })
 

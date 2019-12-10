@@ -32,7 +32,6 @@ class App extends Component {
     this.setState({ filters })
   }
   onRestaurantSelection = (restaurant) => {
-    console.log(restaurant)
     this.setState({ selectedRestaurant: restaurant })
   }
   onClick = (allergy) => {

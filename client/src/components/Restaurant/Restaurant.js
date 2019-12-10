@@ -15,13 +15,6 @@ class Restaurant extends Component {
               show: true
         }
     };
-    componentDidMount = async() => {
-        const restaurant = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/${this.props.selectedRestaurant.id}`)).data;
-    }
-    componentDidUpdate = async() => {
-        const restaurant = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/${this.props.selectedRestaurant.id}`)).data;
-        console.log(restaurant)
-    }
     // getAllergens = (selectedRestaurant) => {
     //     selectedRestaurant.allergens.map(allergy => {
     //         return <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/>  

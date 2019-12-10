@@ -7,7 +7,7 @@ class Welcome extends Component {
   }
   render(){
     return(
-    <div>
+    <div id="welcome-container">
       <h1>
         Avoid allergic reactions with the power of the data
       </h1>
