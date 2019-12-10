@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Map from '../Map/Map.js'
 import Nav from '../Nav/Nav.js'
-import Search from '../Search/Search.js'
 import Filters from '../Filters/Filters.js'
 import Restaurant from '../Restaurant/Restaurant.js'
 import './App.css';
@@ -40,7 +39,6 @@ class App extends Component {
     const { user, filters, selectedRestaurant} = this.state
     return (
       <div className="App">
-          <Search />
           <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection}/>
           <Filters filters={filters} onFilterChange={this.onFilterChange}/>
           {/* <Nav user={user}/> */}
