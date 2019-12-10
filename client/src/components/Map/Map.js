@@ -40,7 +40,6 @@ class Map extends Component {
     }
     locateUser = () => {
         // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
-        console.log(navigator)
         navigator.geolocation.getCurrentPosition(async (position) => {
             console.log(position)
             this.setState({
@@ -75,7 +74,6 @@ class Map extends Component {
         this.forceUpdate()
     }
     onRestaurantSelection = (restaurant) => {
-        console.log(restaurant)
         this.setState({ selectedRestaurant: restaurant })
     }
     render() {
@@ -85,8 +83,9 @@ class Map extends Component {
         closeEffect()
         return (
             <div>
-                <div id="searchBar">
-                    <img src={searchIcon} id="searchIcon" alt="" /> <input type="text" id="searchfield" onChange={(ev) => this.onUpdate(ev)} />
+                <div id="search-bar">
+                    <img src={searchIcon} id="searchIcon" alt="" />
+                    <input type="text" id="searchfield" onChange={(ev) => this.onUpdate(ev)} />
                 </div>
                 <ReactMapGL
                     {...this.state.viewport}
