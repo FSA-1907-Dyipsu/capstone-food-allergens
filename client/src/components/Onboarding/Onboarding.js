@@ -1,24 +1,35 @@
 import React, { Component } from 'react';
 import Icons from '../../assets/images/Allergy_Icons/consolidate_Icons'
 
-class Onboarding extends Component {
-  render() {
-    const { onBoarding, filters, user } = this.props.state
-    return (
-      <div id="onboarding-container">
+const Onboarding = ({filters, onClick, onSubmit}) => {
+  return (
+    <>
+      <h1>Welcome!</h1>
+      <div>
         {
           Object.keys(Icons.unselected).map((allergy, idx) => {
             return (
-              <div key={idx}>    {filters[allergy] === true ?
-                <button name={allergy} onClick={() => { this.onClick(allergy) }}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt="" /> </button> :
-                <button name={allergy} onClick={() => { this.onClick(allergy) }}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt="" /> </button>}
+              <div key={`${allergy}-${idx}`}>
+                {
+                  filters[allergy] ?
+                    <button name={allergy} onClick={() => { onClick(allergy) }}>
+                      <div className="filterLabel">{allergy}</div>
+                      <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" />
+                    </button>
+                    : <button name={allergy} onClick={() => { onClick(allergy) }}>
+                      <div className="filterLabel">{allergy}</div>
+                      <img src={Icons.unselected[allergy]} className="filterIcon" />
+                    </button>
+                }
               </div>
             )
           })
         }
       </div>
-    )
-  }
+      <button onClick={onSubmit}>Save Allergens</button>
+    </>
+  )
 }
+
 
 export default Onboarding

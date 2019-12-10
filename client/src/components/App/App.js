@@ -5,13 +5,13 @@ import Nav from '../Nav/Nav.js'
 import Filters from '../Filters/Filters.js'
 import Restaurant from '../Restaurant/Restaurant.js'
 import Welcome from '../Welcome/Welcome.js'
-import Icons from '../../assets/images/Allergy_Icons/consolidate_Icons'
+import Onboarding from '../Onboarding/Onboarding.js';
 import './App.css';
 
 class App extends Component {
   state = {
     user: null,
-    onBoarded: false,
+    isOnboarded: false,
     selectedRestaurant: null,
     filters: {
       dairy: false,
@@ -34,38 +34,21 @@ class App extends Component {
   onRestaurantSelection = (restaurant) => {
     this.setState({ selectedRestaurant: restaurant })
   }
-  onClick = (allergy) => {
+  handleClickAllergen = (allergy) => {
     this.onFilterChange(allergy)
   }
-  onSubmit = () => {
+  handleChangeAllergenFilter = () => {
     // needs to actually update user allergens
-    const onBoarded = this.state.onBoarded
-    this.setState({ onBoarded: !onBoarded })
+    const isOnboarded = this.state.isOnboarded
+    this.setState({ isOnboarded: !isOnboarded })
   }
   render() {
-    const { user, filters, selectedRestaurant, onBoarded } = this.state
+    const { user, filters, selectedRestaurant, isOnboarded } = this.state
     return (
       <div id="app-container">
         {
           !user ? <Welcome /> :
-            !onBoarded ? (
-              <>
-                <h1>Welcome!</h1>
-                <div>
-                  {
-                    Object.keys(Icons.unselected).map((allergy, idx) => {
-                      return (
-                        <div key={idx}> {filters[allergy] === true ?
-                          <button name={allergy} onClick={() => { this.onClick(allergy) }}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt="" /> </button> :
-                          <button name={allergy} onClick={() => { this.onClick(allergy) }}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt="" /> </button>}
-                        </div>
-                      )
-                    })
-                  }
-                </div>
-                <button onClick={this.onSubmit}>Save Allergens</button>
-              </>
-            )
+            !isOnboarded ? <Onboarding filters={filters} onClick={this.handleClickAllergen} onSubmit={this.handleChangeAllergenFilter} />
               : (
                 <>
                   <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
