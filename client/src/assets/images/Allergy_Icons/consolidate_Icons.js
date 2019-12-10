@@ -12,6 +12,8 @@ import soySelected from './Soy_Selected.svg'
 import soy from './Soy_Unselected.svg'
 import treenutsSelected from './Treenuts_Selected.svg'
 import treenuts from './Treenuts_Unselected.svg'
+import fishSelected from './Fish_Selected.svg'
+import fish from './Fish_Selected.svg'
 
 const Icons = {
         selected: {
@@ -21,6 +23,7 @@ const Icons = {
             peanutSelected,
             soySelected,
             shellfishSelected,
+            fishSelected,
             treenutsSelected
         },
         unselected: {
@@ -30,7 +33,8 @@ const Icons = {
             peanut,
             soy,
             shellfish,
-            treenuts
+            treenuts,
+            fish
         }
     }
 
