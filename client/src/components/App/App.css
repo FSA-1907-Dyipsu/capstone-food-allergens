@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background: black;
+  font-family: 'Roboto Slab', serif;
   display: flex;
   position: absolute;
   flex-direction: column;

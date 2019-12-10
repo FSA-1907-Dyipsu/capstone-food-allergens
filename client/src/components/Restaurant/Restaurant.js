@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Restaurant.css';
+import Icons from '../../assets/images/Allergy_Icons/consolidate_Icons'
 import starIcon from '../../assets/images/StarIcon.png';
 import prof_overalls from '../../assets/images/prof_overalls.jpg';
 import prof_cheeta from '../../assets/images/prof_cheeta.jpg';
@@ -21,24 +22,33 @@ class Restaurant extends Component {
         const restaurant = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/${this.props.selectedRestaurant.id}`)).data;
         console.log(restaurant)
     }
+    // getAllergens = (selectedRestaurant) => {
+    //     selectedRestaurant.allergens.map(allergy => {
+    //         return <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/>  
+    //     });
+    // }
     // onClick = () => {
     //     this.props.onRestaurantSelection(null)
     // }
     render() { 
         const { selectedRestaurant } = this.props
-        console.log(selectedRestaurant)
         return (
                 <div className="restaurantCard">
                     <div className="cardHeader">
-                        {selectedRestaurant.name}
+                        <div id="titleContainer">
+                        <h1>{selectedRestaurant.name}</h1>
                         {/* <img src={prof_cheeta} alt=""/> */}
-                        <div class="Rating">
-                            <img src={starIcon} class="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} class="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} class="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} class="Rating--Star"/>
-                            <img src={starIcon} class="Rating--Star"/>
-                        {selectedRestaurant.street}
+                        { selectedRestaurant.allergens.map(allergy => {
+                            return <img src={Icons.selected[`${allergy}Selected`]} className="allergyIcon" id={allergy} alt=""/>  
+                        })}
+                         <div className="Rating">
+                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
+                            <img src={starIcon} className="Rating--Star"/>
+                            <img src={starIcon} className="Rating--Star"/>
+                        </div>
+                        <div id="address">{selectedRestaurant.street}</div>
                         </div>  
                     </div>
                 </div>
