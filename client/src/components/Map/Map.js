@@ -3,8 +3,8 @@ import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import axios from 'axios';
 import Ping from '../Ping/Ping.js'
 import searchIcon from '../../assets/images/Nav_Icons/Search_Icon Copy.png'
-import './Map.css';
 import { debounce } from 'underscore';
+import './Map.css';
 
 class Map extends Component {
     constructor(props) {
