@@ -3,7 +3,7 @@ import Icons from '../../assets/images/Allergy_Icons/consolidate_Icons'
 
 const Onboarding = ({filters, onClick, onSubmit}) => {
   return (
-    <>
+    <div id="onboarding-container">
       <h1>Welcome!</h1>
       <div>
         {
@@ -27,7 +27,7 @@ const Onboarding = ({filters, onClick, onSubmit}) => {
         }
       </div>
       <button onClick={onSubmit}>Save Allergens</button>
-    </>
+    </div>
   )
 }
 

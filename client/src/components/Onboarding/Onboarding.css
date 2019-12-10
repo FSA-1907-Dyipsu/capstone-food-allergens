@@ -1,3 +1,11 @@
 #onboarding-container {
-  
+    background: linear-gradient(24deg, rgb(158, 64, 192) 0%, rgb(192, 110, 169) 100%);
+    color: white;
+    height: 100%;
+    width: 100%;
+    padding: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }

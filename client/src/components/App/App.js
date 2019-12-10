@@ -49,16 +49,12 @@ class App extends Component {
         {
           !user ? <Welcome /> :
             !isOnboarded ? <Onboarding filters={filters} onClick={this.handleClickAllergen} onSubmit={this.handleChangeAllergenFilter} />
-              : (
-                <>
-                  <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
-                  <Filters filters={filters} onFilterChange={this.onFilterChange} />
-                  <Nav user={user} />
-                  {selectedRestaurant && (
-                    <Restaurant selectedRestaurant={selectedRestaurant} />
-                  )}
-                </>
-              )
+              : <>
+                <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
+                <Filters filters={filters} onFilterChange={this.onFilterChange} />
+                <Nav user={user} />
+                {selectedRestaurant && <Restaurant selectedRestaurant={selectedRestaurant} />}
+              </>
         }
       </div>
     )
