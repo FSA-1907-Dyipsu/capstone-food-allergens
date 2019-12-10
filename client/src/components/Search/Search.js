@@ -10,8 +10,7 @@ class Search extends Component {
       searchText: ''
     }
   }
-    render() { 
-      console.log(this.props)
+    render() {
       return (
              <div id="searchBar">
                  <img src={searchIcon} id="searchIcon" alt=""/> <input type="text" id="searchfield"/>

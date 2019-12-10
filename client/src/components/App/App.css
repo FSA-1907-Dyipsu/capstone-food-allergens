@@ -1,16 +1,7 @@
-.App {
+#app-container {
   text-align: center;
-  background: black;
   font-family: 'Roboto Slab', serif;
   display: flex;
   position: absolute;
   flex-direction: column;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-link {
-  color: #09d3ac;
 }
