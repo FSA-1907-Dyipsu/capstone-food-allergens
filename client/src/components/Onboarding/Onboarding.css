@@ -24,7 +24,7 @@
     flex-wrap: wrap;
 }
 
-#onboarding-selections button {
+#onboarding-selections button, #btn-add-allergen {
     width: 30%;
     height: 28%;
     background-color: rgba(255, 255, 255, 0.5);
@@ -37,7 +37,7 @@
     padding: 6%;
 }
 
-#onboarding-selections button img {
+#onboarding-selections button img, #btn-add-allergen img {
     height: 100%;
 }
 
