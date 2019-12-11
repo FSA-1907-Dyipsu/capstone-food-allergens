@@ -44,13 +44,6 @@ class App extends Component {
   }
   render() {
     const { user, filters, selectedRestaurant, isOnboarded } = this.state
-    // if(window.location.pathname.split('/')[1]){
-    //   return(
-    //     <div>
-          
-    //     </div>
-    //   )
-    // }else{
     return (
       <div id="app-container">
         <HashRouter>
@@ -62,8 +55,8 @@ class App extends Component {
                   <Route path='/map' render={(props) => {
                       return (
                         <>
-                        <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
-                        <Filters filters={filters} onFilterChange={this.onFilterChange} />
+                          <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
+                          <Filters filters={filters} onFilterChange={this.onFilterChange} />
                         </>
                       )
                     } 
@@ -72,7 +65,9 @@ class App extends Component {
                   <Redirect to='/map'/>
                 </Switch>
               <Nav user={user} />
-              {selectedRestaurant && <Restaurant selectedRestaurant={selectedRestaurant} />}
+              { selectedRestaurant && <Restaurant selectedRestaurant={selectedRestaurant}
+                onExit={() => this.setState({selectedRestaurant: null})}
+                rating={Math.floor(Math.random() * 5) + 1} /> }
             </>
           }
           </HashRouter>

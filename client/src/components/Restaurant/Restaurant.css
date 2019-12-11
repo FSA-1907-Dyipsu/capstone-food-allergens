@@ -1,53 +1,109 @@
-.restaurantCard {
-    background-image: linear-gradient(-220deg, #1D1D1D 0%, #100F0F 99%);
+#restaurant-container {
+    background: linear-gradient(328deg, rgba(0,0,0,1) 0%, rgb(55, 34, 59) 100%);
     color:white;
-    opacity: .8;
     border-radius: 1.5rem;
     overflow: hidden;
-    position: absolute;;
+    position: absolute;
     bottom: -80%;
-    height: 90%;
+    height: 92%;
     width: 100%;
     transition: all .3s ease-out;
     z-index: 2;
 }
-#restaurantHeader {
-    display: flex;
-    flex-direction: row;
-}
 
-h1 {
-    font-style: bold;
-    font-size: 1rem;
-    text-align: left;
-}
-
-#address {
-    font-style: light;
-    font-size: .8rem;
-}
-
-#titleContainer {
-    display: inline-flex;
-    padding: 5%
-}
-
-.Rating--Star {
-    filter: grayscale(100%); 
-    opacity: .3; 
-}
-
-.Rating--Star__active {
-    filter: grayscale(0%); 
-    opacity: .9;
-}
-  
-.restaurantCard:hover {
+#restaurant-container:hover {
     opacity: 0.9;
     bottom: 0%;
 }
 
-.allergyIcon {
-    height:30px;
-    width:30px;
+#restaurant-header {
+    background-color: rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 17%;
+    padding: 4% 5% 1% 5%;
+    overflow: hidden;
+}
+
+#title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#restaurant-title {
+    font-style: bold;
+    font-size: 1.25rem;
+    text-align: left;
+    flex-shrink: 1;
+    margin-right: 1rem;
+}
+
+#description-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    flex-grow: 1;
+}
+
+#description-wrapper > span {
+    margin: 1.1%;
+    font-style: light;
+    font-size: .8rem;
+    color: rgb(245, 236, 236)
+}
+
+#restaurant-btn-close {
+    border-radius: 2rem;
+    padding: 0.2rem 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    text-align: center;
+    color: rgb(22, 22, 22);
+    margin-left: 0.5rem;
+    cursor: pinter;
+}
+
+#restaurant-nav {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#restaurant-nav div {
+    font-weight: lighter;
+    padding: 0.2rem 0.8rem;
+}
+
+#restaurant-nav > div.active {
+    border-bottom: solid 2px purple;
+}
+
+.rating-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.rating-star {
+    filter: grayscale(100%); 
+    opacity: .5; 
+}
+
+.rating-star__active {
+    filter: grayscale(0%); 
+    opacity: .9;
+}
+
+#restaurant-content {
+    padding: 4% 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow: scroll;
+    flex-shrink: 1;
 }

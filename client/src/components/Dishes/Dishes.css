@@ -1,22 +1,38 @@
-#dishesContainer {
-    list-style: none;
-    padding-left:10px;
+#dishes-container {
+    padding: 1% 1% 3% 1%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-size: 0.9rem;
+    flex-grow: 1;
 }
 
-#dishesContainer > li {
-    font-size: 12px;
-    margin-bottom: 10px;
+.dishes-details {
     display: flex;
-    /* justify-content: space-around; */
+    flex-direction: column;
+    border-bottom: solid 1px gray;
+    padding: 3% 0;
+}
+
+.dishes-details > div {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-#allergenIcons {
+.dishes-details > span {
+    text-align: left;
+    margin-left: 1rem;
+    font-size: 0.8rem;
+}
+
+#allergen-icons {
     align-content: right;
     justify-content: space-between;
 }
 
-.allergyMenuIcon {
-    height: 20px;
-    width: 30px;
+.allergen-icons img {
+    height: 1.1rem;
+    margin: 0 0.2rem;
 }

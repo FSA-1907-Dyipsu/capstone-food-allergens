@@ -5,29 +5,39 @@ import './Dishes.css';
 
 class Dishes extends Component {
     state = {
-        Dishes: null
+        dishes: null
     }
     componentDidMount = async () => {
         const dishes = (await axios.get(`${process.env.REACT_APP_PROXY}/api/dishes/${this.props.selectedRestaurant.id}`)).data;
-        this.setState({dishes})
+        this.setState({ dishes })
     }
     getAllergens = (ingredientList) => {
         return ingredientList.map((ingredient, idx) => {
-            if(ingredient.allergen !== null) {
-                return <img key={idx} src={Icons.selected[`${ingredient.allergen.name}Selected`]} className="allergyMenuIcon" alt=""/>  
-            } 
+            if (ingredient.allergen) {
+                return <img key={idx} src={Icons.selected[`${ingredient.allergen.name}Selected`]} className="allergyMenuIcon" alt="" />
+            }
         })
     }
-    render() { 
+    render() {
         let { dishes } = this.state
         return (
-                <div id="dishesContainer">
-                { dishes ? dishes.map(dish => {
-                    return <li key={dish.id} className="dishListItem">{dish.name} <div className="allergenIcons">{this.getAllergens(dish.ingredients)}</div></li>  
-                    }) : null}
-                </div>
-    ) 
+            <div id="dishes-container">
+                {dishes ? dishes.map(dish => {
+                    return (
+                        <div className="dishes-details">
+                            <div key={dish.id}>
+                                <span>{dish.name}</span>
+                                <div className="allergen-icons">
+                                    {this.getAllergens(dish.ingredients)}
+                                </div>
+                            </div>
+                            <span>{dish.description}</span>
+                        </div>
+                    )
+                }) : null}
+            </div>
+        )
     }
-  }
-   
-  export default Dishes;
+}
+
+export default Dishes;

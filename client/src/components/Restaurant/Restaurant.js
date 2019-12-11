@@ -1,46 +1,60 @@
 import React, { Component } from 'react';
-import Icons from '../../assets/images/Allergy_Icons/consolidate_Icons'
 import starIcon from '../../assets/images/StarIcon.png';
-import Dishes from '../Dishes/Dishes.js'
+import Dishes from '../Dishes/Dishes';
+import Reviews from '../Reviews/Reviews';
 import './Restaurant.css';
-// import prof_overalls from '../../assets/images/prof_overalls.jpg';
-// import prof_cheeta from '../../assets/images/prof_cheeta.jpg';
-
 class Restaurant extends Component {
     constructor() {
         super();
-            this.state = {
-              preview: false,
-              show: true
+        this.state = {
+            activeView: 'menu'
         }
     };
-    render() { 
-        const { selectedRestaurant } = this.props;
+    render() {
+        const { selectedRestaurant, onExit, rating } = this.props;
+        const { activeView } = this.state;
         return (
-                <div className="restaurantCard">
-                    <div className="cardHeader">
-                        <div id="titleContainer">
-                        <h1>{selectedRestaurant.name}</h1>
-                        {/* <img src={prof_cheeta} alt=""/> */}
-                        { selectedRestaurant.allergens.map(allergy => {
-                            return <img src={Icons.selected[`${allergy}Selected`]} className="allergyIcon" id={allergy} alt=""/>  
-                        })}
-                         <div className="Rating">
-                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} className="Rating--Star Rating--Star__active"/>
-                            <img src={starIcon} className="Rating--Star"/>
-                            <img src={starIcon} className="Rating--Star"/>
+            <div id="restaurant-container">
+                <div id="restaurant-header">
+                    <div id="title-wrapper">
+                        <div id="restaurant-title">
+                            <span>{selectedRestaurant.name}</span>
                         </div>
-                        <div id="address">{selectedRestaurant.street}</div>
-                        </div>  
+                        <div className="rating-wrapper">
+                            <img src={starIcon} className={`rating-star ${rating >= 1 ? 'rating-star__active' : ''}`} />
+                            <img src={starIcon} className={`rating-star ${rating >= 2 ? 'rating-star__active' : ''}`} />
+                            <img src={starIcon} className={`rating-star ${rating >= 3 ? 'rating-star__active' : ''}`} />
+                            <img src={starIcon} className={`rating-star ${rating >= 4 ? 'rating-star__active' : ''}`} />
+                            <img src={starIcon} className={`rating-star ${rating >= 5 ? 'rating-star__active' : ''}`} />
+                            <button id="restaurant-btn-close" onClick={onExit}>x</button>
+                        </div>
                     </div>
-                    <div id="cardBody">
-                        <Dishes selectedRestaurant={selectedRestaurant}/>
+                    <div id="description-wrapper">
+                        <span>{`${selectedRestaurant.street}, ${selectedRestaurant.city}, ${selectedRestaurant.state}, ${selectedRestaurant.zip}`}</span>
+                        { selectedRestaurant.description && <span>{selectedRestaurant.description}</span> }
+                    </div>
+                    <div id="restaurant-nav">
+                        <div onClick={() => {this.setState({activeView: 'menu'})}} className={activeView === 'menu' ? 'active' : ''}>
+                            <span>Menu</span>
+                        </div>
+                        <div onClick={() => {this.setState({activeView: 'reviews'})}} className={activeView === 'review' ? 'active' : ''}>
+                            <span>Reviews</span>
+                        </div>
+                        <div onClick={() => {this.setState({activeView: 'statistics'})}} className={activeView === 'statistic' ? 'active' : ''}>
+                            <span>Statistics</span>
+                        </div>
                     </div>
                 </div>
-        ) 
+                <div id="restaurant-content">
+                    {
+                        activeView === 'reviews' ? <Reviews /> :
+                        activeView === 'statistics' ? <span>Statistics in progress...</span> :
+                        <Dishes selectedRestaurant={selectedRestaurant}/>
+                    }
+                </div>
+            </div>
+        )
     }
-  }
-   
-  export default Restaurant;
+}
+
+export default Restaurant;
