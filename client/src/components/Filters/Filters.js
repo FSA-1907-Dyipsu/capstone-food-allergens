@@ -12,21 +12,27 @@ class Filters extends Component {
     filterToggle = () => {
 
     }
-    render() { 
+    render() {
         const { filters } = this.props
-      return (
-        <div className="filterContainer">
-        {Object.keys(Icons.unselected).map((allergy,idx)=>{
-            return(
-                <div key={idx}>
-                    {filters[allergy] === true ? 
-                    <button name={allergy} onClick={() => {this.onClick(allergy)}}> <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt=""/> </button> : 
-                    <button name={allergy} onClick={() => {this.onClick(allergy)}}>  <div className="filterLabel">{`${allergy}`}</div> <img src={Icons.unselected[allergy]} className="filterIcon" alt=""/> </button>}
-                </div> 
-            )
-        })} </div>
-      );
+        return (
+            <div className="filterContainer">
+                {Object.keys(Icons.unselected).map((allergy, idx) => {
+                    return (
+                        <div key={idx}>
+                            {filters[allergy] === true ?
+                                <button name={allergy} onClick={() => { this.onClick(allergy) }}>
+                                    <div className="filterLabel">{`${allergy}`}</div>
+                                    <img src={Icons.selected[`${allergy}Selected`]} className="filterIcon" alt="" />
+                                </button> :
+                                <button name={allergy} onClick={() => { this.onClick(allergy) }}>
+                                    <div className="filterLabel">{`${allergy}`}</div>
+                                    <img src={Icons.unselected[allergy]} className="filterIcon" alt="" />
+                                </button>}
+                        </div>
+                    )
+                })} </div>
+        );
     }
-  }
-   
-  export default Filters;
+}
+
+export default Filters;

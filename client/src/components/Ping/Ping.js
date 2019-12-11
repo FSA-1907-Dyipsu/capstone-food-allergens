@@ -6,22 +6,36 @@ class Ping extends Component {
     render() { 
         let warning = false
         const { filters, restaurant } = this.props
-        Object.keys(filters).map((key, index) => {
-            if(filters[key] === true && restaurant.allergens.includes(key)) {
-                warning = true
-            }
-        });
-        return (
-            warning ?
-                <button className="placeIconAllergy">
-                    <img src={allergenPlaceIcon} height="40" width="20" alt=""/>
-                 </button> :
-                 <button className="placeIcon" >
-                    <img src={placeIcon} height="40" width="20" alt=""/>
-                </button> 
-            
-        )
-                
+        if(restaurant.allergens){
+            Object.keys(filters).map((key, index) => {
+                if(filters[key] === true && restaurant.allergens.includes(key)) {
+                    warning = true
+                }
+            });
+            return (
+                warning ?
+                <div>
+                    <div className="placeIconAllergy">
+                        <img src={allergenPlaceIcon} height="40" width="20" alt=""/>
+                     </div>
+                </div>
+                     :
+                <div>
+                     <div className="placeIcon" >
+                        <img src={placeIcon} height="40" width="20" alt=""/>
+                    </div> 
+                </div>
+            )
+        } 
+        else{
+            return(
+                <div>
+                    <h6>
+                        Loading....
+                    </h6>
+                </div>
+            )
+        }  
     }
   }
    

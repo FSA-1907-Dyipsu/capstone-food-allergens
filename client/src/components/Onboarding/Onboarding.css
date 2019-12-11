@@ -1,0 +1,62 @@
+#onboarding-container {
+    background: linear-gradient(24deg, rgb(158, 64, 192) 0%, rgb(192, 110, 169) 100%);
+    color: white;
+    height: 100%;
+    width: 100%;
+    padding: 20% 7% 7% 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#onboarding-container h1 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5vh;
+}
+
+#onboarding-selections {
+    height: 50%;
+    width: 100%;
+    margin-bottom: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#onboarding-selections button, #btn-add-allergen {
+    width: 30%;
+    height: 28%;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0.4rem 0.4rem 0.2rem rgba(0,0,0,0.2);
+    margin: 1%;
+    border-radius: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6%;
+}
+
+#onboarding-selections button img, #btn-add-allergen img {
+    height: 100%;
+}
+
+#onboarding-confirmation {
+    transition: all 0.5s ease;
+    font-size: 1.2rem;
+    color: rgb(70, 70, 70);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 0.5rem;
+    padding: 4% 5%;
+    margin: 0 3% 0 auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0.4rem 0.4rem 0.2rem rgba(0,0,0,0.2);
+}
+
+#onboarding-confirmation:hover {
+    background-color: rgba(255, 180, 226, 0.5);
+    font-size: 1.5rem;
+} 
