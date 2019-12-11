@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Restaurant.css';
 import Icons from '../../assets/images/Allergy_Icons/consolidate_Icons'
 import starIcon from '../../assets/images/StarIcon.png';
 import Dishes from '../Dishes/Dishes.js'
+import './Restaurant.css';
 // import prof_overalls from '../../assets/images/prof_overalls.jpg';
 // import prof_cheeta from '../../assets/images/prof_cheeta.jpg';
 
