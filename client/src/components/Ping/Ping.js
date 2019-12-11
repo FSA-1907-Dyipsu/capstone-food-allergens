@@ -15,7 +15,7 @@ class Ping extends Component {
             return (
                 warning ?
                 <div>
-                    <div className="placeIconAllergy">
+                    <div className="placeIcon">
                         <img src={allergenPlaceIcon} height="40" width="20" alt=""/>
                      </div>
                 </div>
