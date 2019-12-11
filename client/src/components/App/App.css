@@ -1,6 +1,5 @@
 #app-container {
   text-align: center;
-  font-family: 'Roboto Slab', serif;
   display: flex;
   position: absolute;
   flex-direction: column;
