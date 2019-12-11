@@ -17,6 +17,7 @@ class App extends Component {
       dairy: false,
       egg: false,
       gluten: false,
+      peanut: false,
       soy: false,
       shellfish: false,
       treenut: false,
@@ -34,9 +35,6 @@ class App extends Component {
   onRestaurantSelection = (restaurant) => {
     this.setState({ selectedRestaurant: restaurant })
   }
-  handleClickAllergen = (allergy) => {
-    this.onFilterChange(allergy)
-  }
   handleChangeAllergenFilter = () => {
     // needs to actually update user allergens
     const isOnboarded = this.state.isOnboarded
@@ -48,7 +46,7 @@ class App extends Component {
       <div id="app-container">
         {
           !user ? <Welcome /> :
-            !isOnboarded ? <Onboarding filters={filters} onClick={this.handleClickAllergen} onSubmit={this.handleChangeAllergenFilter} />
+            !isOnboarded ? <Onboarding filters={filters} onAllergenClick={this.onFilterChange} onSubmit={this.handleChangeAllergenFilter} />
               : <>
                 <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
                 <Filters filters={filters} onFilterChange={this.onFilterChange} />

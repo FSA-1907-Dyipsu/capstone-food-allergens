@@ -13,7 +13,7 @@ import soy from './Soy_Unselected.svg'
 import treenutSelected from './Treenut_Selected.svg'
 import treenut from './Treenut_Unselected.svg'
 import fishSelected from './Fish_Selected.svg'
-import fish from './Fish_Selected.svg'
+import fish from './Fish_Unselected.png'
 
 const Icons = {
         selected: {
