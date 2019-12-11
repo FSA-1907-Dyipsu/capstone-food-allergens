@@ -1,10 +1,13 @@
 const router = require('express').Router()
-const {Dishes, DishIngredients} = require('../db/index').models
+const {Dishes, Ingredients, Allergens } = require('../db/index').models
 
 router.get('/:id', (req,res,next) =>{
-  Dishes.findAll({where:{
+  Dishes.findAll({
+    include: [{model:Ingredients, include:[Allergens]}],
+    where:{
     restaurantId: req.params.id
-  }}).then(resto=>res.send(resto))
+    }
+}).then(resto=>res.send(resto))
 })
 
 module.exports = router

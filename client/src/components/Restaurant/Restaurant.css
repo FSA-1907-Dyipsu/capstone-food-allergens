@@ -9,9 +9,11 @@
     height: 90%;
     width: 100%;
     transition: all .3s ease-out;
+    z-index: 2;
+}
+#restaurantHeader {
     display: flex;
     flex-direction: row;
-    z-index: 2;
 }
 
 h1 {

@@ -1,0 +1,22 @@
+#dishesContainer {
+    list-style: none;
+    padding-left:10px;
+}
+
+#dishesContainer > li {
+    font-size: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+}
+
+#allergenIcons {
+    align-content: right;
+    justify-content: space-between;
+}
+
+.allergyMenuIcon {
+    height: 20px;
+    width: 30px;
+}
