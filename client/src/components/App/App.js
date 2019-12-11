@@ -6,6 +6,8 @@ import Filters from '../Filters/Filters.js'
 import Restaurant from '../Restaurant/Restaurant.js'
 import Welcome from '../Welcome/Welcome.js'
 import Onboarding from '../Onboarding/Onboarding.js';
+import ReviewForm from '../ReviewForm/ReviewForm.js'
+import {HashRouter, Switch, Route, Redirect} from 'react-router-dom'
 import './App.css';
 
 class App extends Component {
@@ -42,21 +44,41 @@ class App extends Component {
   }
   render() {
     const { user, filters, selectedRestaurant, isOnboarded } = this.state
+    // if(window.location.pathname.split('/')[1]){
+    //   return(
+    //     <div>
+          
+    //     </div>
+    //   )
+    // }else{
     return (
       <div id="app-container">
+        <HashRouter>
         {
           !user ? <Welcome /> :
             !isOnboarded ? <Onboarding filters={filters} onAllergenClick={this.onFilterChange} onSubmit={this.handleChangeAllergenFilter} />
               : <>
-                <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
-                <Filters filters={filters} onFilterChange={this.onFilterChange} />
-                <Nav user={user} />
-                {selectedRestaurant && <Restaurant selectedRestaurant={selectedRestaurant} />}
-              </>
-        }
+                <Switch>
+                  <Route path='/map' render={(props) => {
+                      return (
+                        <>
+                        <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
+                        <Filters filters={filters} onFilterChange={this.onFilterChange} />
+                        </>
+                      )
+                    } 
+                  } />
+                  <Route path='/reviews' component={ReviewForm}/>
+                  <Redirect to='/map'/>
+                </Switch>
+              <Nav user={user} />
+              {selectedRestaurant && <Restaurant selectedRestaurant={selectedRestaurant} />}
+            </>
+          }
+          </HashRouter>
       </div>
     )
-  }
+}
   getUser = async () => {
     const user = (await axios.get('/api/user')).data;
     if (user) this.setState({ user })
