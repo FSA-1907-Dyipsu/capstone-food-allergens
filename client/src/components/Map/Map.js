@@ -87,10 +87,10 @@ class Map extends Component {
         const { setSelectedRestaurant, closeEffect, locateUser, filterByAllergen } = this
         closeEffect()
         return (
-            <div>
+            <div id="map-container">
                 <div id="search-bar">
                     <img src={searchIcon} id="searchIcon" alt="" />
-                    <input type="text" id="searchfield" onChange={(ev) => this.delaySearchChange(ev)} />
+                    <input type="text" id="searchfield" onChange={(ev) => this.delaySearchChange(ev)} placeholder="Search a restaurant" />
                 </div>
                 <ReactMapGL
                     {...this.state.viewport}
@@ -98,7 +98,7 @@ class Map extends Component {
                     mapStyle="mapbox://styles/grey-matter/ck3800c9m5wec1cp6j6wffxii"
                     onViewportChange={(viewport) => this.setState({ viewport })}
                 >
-                    <button className="primary" onClick={locateUser}>Current Location</button>
+                    <button id="btn-current-location" onClick={locateUser}>Current Location</button>
                     {searchedRestos.length ?
                         searchedRestos.map((restaurant, idx) => (
                             <button key={idx} onClick={() => {
