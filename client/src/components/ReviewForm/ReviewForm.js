@@ -31,14 +31,19 @@ class ReviewForm extends Component{
         </div>
         <div>
           <h3>Description</h3>
-          <input type='text' name='description' value={description} onChange={(ev)=> this.setState({[ev.target.name]:ev.target.value})} />
+          <textarea name='description' id='description' value={description} onChange={(ev)=> this.setState({[ev.target.name]:ev.target.value})} />
         </div>
         <div>
-          <h3>Rating (1-5)</h3>
-          <input type='option' name='rating' value={rating} onChange={(ev)=> this.setState({[ev.target.name]:ev.target.value})} />
+          <h3>Rating</h3>
+          <input type='radio' name='rating' value={rating}/> 1
+          <input type='radio' name='rating' value={rating}/> 2
+          <input type='radio' name='rating' value={rating}/> 3
+          <input type='radio' name='rating' value={rating}/> 4
+          <input type='radio' name='rating' value={rating}/> 5
         </div>
 
         <a href='/' id='review-confirmation'><button onClick={this.handleSubmit}>Submit Review</button></a>
+        <a href='/' id='review-confirmation'><button onClick={this.handleSubmit}>Upload Pictures</button></a>
       </div>
     )
   }
