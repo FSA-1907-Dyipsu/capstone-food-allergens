@@ -3,6 +3,7 @@ import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import axios from 'axios';
 import Ping from '../Ping/Ping.js'
 import searchIcon from '../../assets/images/Nav_Icons/Search_Icon Copy.png'
+import currentLocationIcon from '../../assets/images/CurrentLocation.svg'
 import { debounce } from 'underscore';
 import './Map.css';
 
@@ -88,9 +89,12 @@ class Map extends Component {
         closeEffect()
         return (
             <div id="map-container">
-                <div id="search-bar">
-                    <img src={searchIcon} id="searchIcon" alt="" />
-                    <input type="text" id="searchfield" onChange={(ev) => this.delaySearchChange(ev)} placeholder="Search a restaurant" />
+                <div id="location-bar">
+                    <div id="search-bar">
+                        <img src={searchIcon} id="searchIcon" alt="" />
+                        <input type="text" id="searchfield" onChange={(ev) => this.delaySearchChange(ev)} placeholder="Search a restaurant" />
+                    </div>
+                    <img src={currentLocationIcon} id="btn-current-location" onClick={locateUser} />
                 </div>
                 <ReactMapGL
                     {...this.state.viewport}
@@ -98,7 +102,6 @@ class Map extends Component {
                     mapStyle="mapbox://styles/grey-matter/ck3800c9m5wec1cp6j6wffxii"
                     onViewportChange={(viewport) => this.setState({ viewport })}
                 >
-                    <button id="btn-current-location" onClick={locateUser}>Current Location</button>
                     {searchedRestos.length ?
                         searchedRestos.map((restaurant, idx) => (
                             <button key={idx} onClick={() => {
