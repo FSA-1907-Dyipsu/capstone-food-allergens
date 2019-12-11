@@ -6,7 +6,11 @@
   padding: 10% 7% 7% 7%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+}
+
+.txt-review input, textarea {
+  width: 90%;
 }
 
 #review-confirmation {
@@ -29,7 +33,10 @@
   font-size: 1.5rem;
 } 
 
-#description{
-  height:100px;
-  width:200px
+#review-container h4 {
+  margin-bottom: 0.5rem;
+}
+
+#description {
+  height: 6rem;
 }

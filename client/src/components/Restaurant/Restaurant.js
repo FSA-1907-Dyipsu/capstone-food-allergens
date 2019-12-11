@@ -37,10 +37,10 @@ class Restaurant extends Component {
                         <div onClick={() => {this.setState({activeView: 'menu'})}} className={activeView === 'menu' ? 'active' : ''}>
                             <span>Menu</span>
                         </div>
-                        <div onClick={() => {this.setState({activeView: 'reviews'})}} className={activeView === 'review' ? 'active' : ''}>
+                        <div onClick={() => {this.setState({activeView: 'reviews'})}} className={activeView === 'reviews' ? 'active' : ''}>
                             <span>Reviews</span>
                         </div>
-                        <div onClick={() => {this.setState({activeView: 'statistics'})}} className={activeView === 'statistic' ? 'active' : ''}>
+                        <div onClick={() => {this.setState({activeView: 'statistics'})}} className={activeView === 'statistics' ? 'active' : ''}>
                             <span>Statistics</span>
                         </div>
                     </div>
