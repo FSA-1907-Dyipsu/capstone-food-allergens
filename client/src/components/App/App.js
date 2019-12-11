@@ -54,26 +54,30 @@ class App extends Component {
     return (
       <div id="app-container">
         <HashRouter>
-       
-           <Switch>
-
-        <Route path='/map' render={ (props)=>{
-          return !user ? <Welcome /> :
+        {
+          !user ? <Welcome /> :
             !isOnboarded ? <Onboarding filters={filters} onAllergenClick={this.onFilterChange} onSubmit={this.handleChangeAllergenFilter} />
               : <>
-                <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
-                <Filters filters={filters} onFilterChange={this.onFilterChange} />
-                <Nav user={user} />
-                {selectedRestaurant && <Restaurant selectedRestaurant={selectedRestaurant} />}
-              </>
-          } }/>
-            <Route path='/reviews' component={ReviewForm}/>
-            <Redirect to='/map'/>
-          </Switch>
-        </HashRouter>
+                <Switch>
+                  <Route path='/map' render={(props) => {
+                      return (
+                        <>
+                        <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
+                        <Filters filters={filters} onFilterChange={this.onFilterChange} />
+                        </>
+                      )
+                    } 
+                  } />
+                  <Route path='/reviews' component={ReviewForm}/>
+                  <Redirect to='/map'/>
+                </Switch>
+              <Nav user={user} />
+              {selectedRestaurant && <Restaurant selectedRestaurant={selectedRestaurant} />}
+            </>
+          }
+          </HashRouter>
       </div>
     )
-  // }
 }
   getUser = async () => {
     const user = (await axios.get('/api/user')).data;
