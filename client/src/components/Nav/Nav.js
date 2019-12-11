@@ -12,9 +12,9 @@ class Nav extends Component {
     const { user } = this.props
     return (
       <header id="nav-container">
-        <a href='/map'><img src={mapIconSelected} height="30" width="30" alt=""/><span>Map</span></a>
+        <Link to='/map'><img src={mapIconSelected} height="30" width="30" alt=""/><span>Map</span></Link>
         {/* <a href='/search'><img src={searchIcon} height="30" width="30"alt=""/><span>Search</span></a> */}
-        <a href='/reviews'><img src={homeIcon} height="30" width="30"alt=""/><span>Reviews</span></a>
+        <Link to='/reviews'><img src={homeIcon} height="30" width="30"alt=""/><span>Reviews</span></Link>
         {
           user ? <a href={`${process.env.REACT_APP_PROXY}/api/auth/logout`}><img src={accountIcon} height="30" width="30" alt=""/><span>Logout</span></a>
           : <a href={`${process.env.REACT_APP_PROXY}/api/auth/google`}><img src={accountIcon} height="30" width="30" alt=""/><span>Login</span></a>
