@@ -42,7 +42,7 @@ class Map extends Component {
         this.getRestaurant()
     }
     locateUser = () => {
-        // https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
+        // https://developer.mozilla.org/en-US/docs/Web/Geolocation/Using_geolocation
         navigator.geolocation.getCurrentPosition(async (position) => {
             this.setState({
                 viewport: {
@@ -56,7 +56,7 @@ class Map extends Component {
         });
     }
     getRestaurant = async () => {
-        const newRestaurants = (await axios.get(`${process.env.REACT_APP_PROXY}/api/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)).data;
+        const newRestaurants = (await axios.get(`${process.env.REACT_APP_PROXY}/restaurants/location/${this.state.viewport.latitude}/${this.state.viewport.longitude}`)).data;
         this.setState({ restaurants: newRestaurants })
     }
     closeEffect = () => {

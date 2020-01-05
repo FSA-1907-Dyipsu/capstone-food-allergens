@@ -16,8 +16,8 @@ class Nav extends Component {
         {/* <a href='/search'><img src={searchIcon} height="30" width="30"alt=""/><span>Search</span></a> */}
         <Link to='/reviews'><img src={homeIcon} height="30" width="30"alt=""/><span>Reviews</span></Link>
         {
-          user ? <a href={`${process.env.REACT_APP_PROXY}/api/auth/logout`}><img src={accountIcon} height="30" width="30" alt=""/><span>Logout</span></a>
-          : <a href={`${process.env.REACT_APP_PROXY}/api/auth/google`}><img src={accountIcon} height="30" width="30" alt=""/><span>Login</span></a>
+          user ? <a href={`${process.env.REACT_APP_PROXY}/auth/logout`}><img src={accountIcon} height="30" width="30" alt=""/><span>Logout</span></a>
+          : <a href={`${process.env.REACT_APP_PROXY}/auth/google`}><img src={accountIcon} height="30" width="30" alt=""/><span>Login</span></a>
         }
       </header>
     );

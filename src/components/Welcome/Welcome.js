@@ -17,7 +17,7 @@ class Welcome extends Component {
       </p>
       <div id="sign-in-google">
         <img src={googleIcon} />
-        <a href={`${process.env.REACT_APP_PROXY}/api/auth/google`}>Sign in With Google</a>
+        <a href={`${process.env.REACT_APP_PROXY}/auth/google`}>Sign in With Google</a>
       </div>
     </div>)
   }

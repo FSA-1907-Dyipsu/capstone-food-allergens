@@ -8,7 +8,7 @@ class Dishes extends Component {
         dishes: null
     }
     componentDidMount = async () => {
-        const dishes = (await axios.get(`${process.env.REACT_APP_PROXY}/api/dishes/${this.props.selectedRestaurant.id}`)).data;
+        const dishes = (await axios.get(`${process.env.REACT_APP_PROXY}/dishes/${this.props.selectedRestaurant.id}`)).data;
         this.setState({ dishes })
     }
     getAllergens = (ingredientList) => {
