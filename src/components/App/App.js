@@ -75,7 +75,7 @@ class App extends Component {
     )
 }
   getUser = async () => {
-    const user = (await axios.get('/user')).data;
+    const user = (await axios.get(`${process.env.REACT_APP_PROXY}/user`)).data;
     if (user) this.setState({ user })
   }
 }
