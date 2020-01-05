@@ -6,4 +6,4 @@ It all started with a peanut.
 
 ### How to run?
 
-- **npm run dev** to start development environment
+- **npm run start**
