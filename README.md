@@ -6,4 +6,4 @@ It all started with a peanut.
 
 ### How to run?
 
-- **npm run start** - to go to server directory
+- **npm run start**
