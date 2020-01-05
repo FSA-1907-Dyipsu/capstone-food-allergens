@@ -76,7 +76,6 @@ class App extends Component {
 }
   getUser = async () => {
     const user = (await axios.get('/user')).data;
-    console.log('user from getUser->', user)
     if (user) this.setState({ user })
   }
 }
