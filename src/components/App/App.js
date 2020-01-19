@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Map from '../Map/Map.js'
-import Nav from '../Nav/Nav.js'
-import Filters from '../Filters/Filters.js'
-import Restaurant from '../Restaurant/Restaurant.js'
-import Welcome from '../Welcome/Welcome.js'
-import Onboarding from '../Onboarding/Onboarding.js';
-import ReviewForm from '../ReviewForm/ReviewForm.js'
-import {HashRouter, Switch, Route, Redirect} from 'react-router-dom'
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
+import Map from "../Map/Map.js";
+import Nav from "../Nav/Nav.js";
+import Filters from "../Filters/Filters.js";
+import Restaurant from "../Restaurant/Restaurant.js";
+import Welcome from "../Welcome/Welcome.js";
+import Onboarding from "../Onboarding/Onboarding.js";
+import ReviewForm from "../ReviewForm/ReviewForm.js";
+import { HashRouter, Switch, Route, Redirect } from "react-router-dom";
+import "./App.css";
 
 class App extends Component {
   state = {
@@ -25,59 +25,81 @@ class App extends Component {
       treenut: false,
       fish: false
     }
-  }
+  };
   async componentDidMount() {
-    this.getUser()
+    this.getUser();
   }
-  onFilterChange = (allergy) => {
-    const filters = this.state.filters
-    filters[allergy] = !filters[allergy]
-    this.setState({ filters })
-  }
-  onRestaurantSelection = (restaurant) => {
-    this.setState({ selectedRestaurant: restaurant })
-  }
+  onFilterChange = allergy => {
+    const filters = this.state.filters;
+    filters[allergy] = !filters[allergy];
+    this.setState({ filters });
+  };
+  onRestaurantSelection = restaurant => {
+    this.setState({ selectedRestaurant: restaurant });
+  };
   handleChangeAllergenFilter = () => {
     // needs to actually update user allergens
-    const isOnboarded = this.state.isOnboarded
-    this.setState({ isOnboarded: !isOnboarded })
-  }
+    const isOnboarded = this.state.isOnboarded;
+    this.setState({ isOnboarded: !isOnboarded });
+  };
   render() {
-    const { user, filters, selectedRestaurant, isOnboarded } = this.state
+    const { user, filters, selectedRestaurant, isOnboarded } = this.state;
     return (
       <div id="app-container">
         <HashRouter>
-        {
-          !user ? <Welcome /> :
-            !isOnboarded ? <Onboarding filters={filters} onAllergenClick={this.onFilterChange} onSubmit={this.handleChangeAllergenFilter} />
-              : <>
-                <Switch>
-                  <Route path='/map' render={(props) => {
-                      return (
-                        <>
-                          <Map filters={filters} onRestaurantSelection={this.onRestaurantSelection} />
-                          <Filters filters={filters} onFilterChange={this.onFilterChange} />
-                        </>
-                      )
-                    } 
-                  } />
-                  <Route path='/reviews' component={ReviewForm}/>
-                  <Redirect to='/map'/>
-                </Switch>
+          {!user ? (
+            <Welcome />
+          ) : !isOnboarded ? (
+            <Onboarding
+              filters={filters}
+              onAllergenClick={this.onFilterChange}
+              onSubmit={this.handleChangeAllergenFilter}
+            />
+          ) : (
+            <>
+              <Switch>
+                <Route
+                  path="/map"
+                  render={props => {
+                    return (
+                      <>
+                        <Map
+                          filters={filters}
+                          onRestaurantSelection={this.onRestaurantSelection}
+                        />
+                        <Filters
+                          filters={filters}
+                          onFilterChange={this.onFilterChange}
+                        />
+                      </>
+                    );
+                  }}
+                />
+                <Route path="/reviews" component={ReviewForm} />
+                <Redirect to="/map" />
+              </Switch>
               <Nav user={user} />
-              { selectedRestaurant && <Restaurant selectedRestaurant={selectedRestaurant}
-                onExit={() => this.setState({selectedRestaurant: null})}
-                rating={Math.floor(Math.random() * 5) + 1} /> }
+              {selectedRestaurant && (
+                <Restaurant
+                  selectedRestaurant={selectedRestaurant}
+                  onExit={() => this.setState({ selectedRestaurant: null })}
+                  rating={Math.floor(Math.random() * 5) + 1}
+                />
+              )}
             </>
-          }
-          </HashRouter>
+          )}
+        </HashRouter>
       </div>
-    )
-}
-  getUser = async () => {
-    const user = (await axios.get(`${process.env.REACT_APP_PROXY}/user`)).data;
-    if (user) this.setState({ user })
+    );
   }
+  getUser = async () => {
+    const user = (
+      await axios.get(`${process.env.REACT_APP_PROXY}/user`, {
+        withCredentials: true
+      })
+    ).data;
+    if (user) this.setState({ user });
+  };
 }
 
 export default App;
